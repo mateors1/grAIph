@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "grAIph: Topological Context Compilation for LLM Code Generation"
+abstract: >
+  grAIph implements Topological Context Compilation (TCC) — a novel architecture
+  applying compiler theory to LLM context window management. The dependency graph
+  is the source language. Kahn's algorithm determines generation order. An exponential
+  decay formula governs context allocation. A multi-agent quality pipeline converts
+  stochastic LLM output into verifiable, compilable code.
+authors:
+  - family-names: Rendon Suarez
+    given-names: Mateo
+    email: hello@graiph.dev
+    country: CO
+repository-code: https://github.com/mateors1/graiph
+url: https://graiph.dev
+license: Apache-2.0
+version: 0.1.0-methodology
+date-released: "2026-05-25"
+keywords:
+  - llm
+  - code-generation
+  - compiler
+  - topological-context-compilation
+  - benchmark
+  - vscode-extension
+  - context-window
+  - graph
+references:
+  - type: article
+    title: "Topological Context Compilation: Benchmark Methodology and Empirical Validation"
+    authors:
+      - family-names: Rendon Suarez
+        given-names: Mateo
+    status: in-preparation
+    year: 2026
