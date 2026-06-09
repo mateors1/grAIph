@@ -152,7 +152,7 @@ capability. This is a research claim with empirical evidence.
 [graiph.dev](https://graiph.dev)
 
 Built by Mateo Rendon Suarez — Bogotá, Colombia.
-NLnet grant application submitted May 2026. O-1A visa path in progress.
+NLnet grant application submitted May 2026.
 
 ---
 
