@@ -6,6 +6,33 @@
 
 ---
 
+> ## ⚠️ Correction Notice — 2026-07-17
+>
+> A benchmark integrity issue was identified during an internal forensic audit on
+> 2026-07-16. **All byte-identical file counts previously reported across the
+> benchmark run history are retracted.**
+>
+> The audit found that in every run that could be audited (V33–V50), 100% of
+> byte-identical output files were produced by a pipeline fallback path — the
+> batch-repair stage wrote the imported original file back to the output directory
+> whenever a node's generation produced no output. These files were leaked copies
+> of the ground truth, not model generations. Every audited byte-identical file
+> correlates with a `filesGenerated: 0` generation event. Runs before V33 cannot
+> be retro-audited (generation event logs were not retained) and their
+> byte-identical counts are retracted as unverifiable.
+>
+> Composite scores that weight byte-identical dimensions (roughly 30% under
+> scoring v1) are under re-evaluation. Compile, intent-fidelity, and semantic
+> metrics do not depend on this vector and are unaffected by it.
+>
+> Affected claims in this repository are labeled rather than deleted, consistent
+> with how earlier integrity findings were handled (see the version history in
+> [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md)). Re-benchmarking will follow under a
+> corrected pipeline with a mandatory leak-detection precondition — see
+> **BENCHMARK_SPEC.md Step 0**.
+
+---
+
 ## What grAIph Is
 
 grAIph is a VS Code extension and code synthesis pipeline implementing **Topological
@@ -18,13 +45,20 @@ The graph is the source language. The pipeline compiles it into production code.
 
 ## The Result
 
+> ⚠️ **Under re-evaluation (2026-07-17):** the figures in this section are
+> v1 judge-estimated scores whose byte-identical dimensions are affected by the
+> retracted metric (see correction notice above). The direction of the deltas is
+> supported by compile, intent, and semantic evidence, but the specific numbers
+> await clean re-benchmarking under the corrected methodology.
+
 A 2.3 billion parameter model (Q4 quantized, fits in 2GB RAM) governed by grAIph
-scores within 0.1 points of frontier models on a 37-file TypeScript benchmark.
+scored within 0.1 points of frontier models on a 37-file TypeScript benchmark.
 
 The same model scored **2.8/10 before pipeline improvements** and **7.7/10 after**
 with zero model change.
 
-Pipeline infrastructure is the dominant quality variable. Not model scale.
+The working hypothesis remains that pipeline infrastructure is a dominant quality
+variable — now to be re-established against a verified-clean baseline.
 
 ---
 
@@ -82,15 +116,22 @@ Works with models as small as **Gemma 4 E2B (2.3B effective parameters)**.
 
 ## Benchmark History
 
-23 runs across 6 models. Documented methodology. Reproducible results.
+50+ runs across 6 models. Documented methodology.
 
 | Run | Model | Score | Notes |
 |-----|-------|-------|-------|
-| V-Poisoned-SF | GPT-4o | 100% byte-perfect | Pipeline determinism ceiling. External machine (SF). |
-| V15 | Unknown frontier | 8.1/10 | First 4/4 hub byte-identical run |
-| V22 | Gemma 4 E2B (2.3B Q4) | 8.1/10 adj | Ties frontier. Zero ENGINE-INJECT. Single-model pipeline. |
-| V23 | Flash Lite | 7.7/10 | Was 2.8/10 in V10. +4.9pts from pipeline alone. |
+| V-Poisoned-SF | GPT-4o | ~~100% byte-perfect~~ † | ~~Pipeline determinism ceiling.~~ External machine (SF). Byte-identical result retracted † |
+| V15 | Unknown frontier | 8.1/10 † | ~~First 4/4 hub byte-identical run~~ Byte-identical result retracted † |
+| V22 | Gemma 4 E2B (2.3B Q4) | 8.1/10 adj † | Zero ENGINE-INJECT. Single-model pipeline. |
+| V23 | Flash Lite | 7.7/10 † | Was 2.8/10 in V10. Delta magnitude under re-evaluation † |
 | V10 | Flash Lite | 2.8/10 | Pre-pipeline-fixes baseline |
+
+> † **2026-07-17:** Byte-identical results in this table are retracted — a forensic
+> audit traced byte-identical output files to a pipeline fallback path that copied
+> the imported original to the output directory, not to model generation. Scores
+> shown are v1 judge-estimated and are under re-evaluation where they weight
+> byte-identical dimensions. See the correction notice at the top of this README
+> and BENCHMARK_SPEC.md Step 0.
 
 Full methodology: see [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md)
 
@@ -140,9 +181,10 @@ Current LLM code generation tools (Cursor, Copilot, LangChain) either rely on
 model brute force or route prompts without structural guarantees. grAIph's
 hypothesis: **LLMs don't lack capability — they lack structure.**
 
-The benchmark results validate this. A 2.3B model with structure outperforms
-larger models without it. The architecture layer contributes materially to
-capability. This is a research claim with empirical evidence.
+The benchmark record supports this directionally. The quantitative claims are
+being re-established against a verified-clean baseline following the 2026-07-17
+correction (see notice above). This is a research claim under active empirical
+validation — including validation of the benchmark itself.
 
 ---
 

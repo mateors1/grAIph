@@ -3,8 +3,28 @@
 
 **Author:** Mateo Rendon Suarez  
 **Contact:** hello@graiph.dev  
-**Last updated:** 2026-05-19  
+**Last updated:** 2026-07-17  
 **Status:** Pre-publication. NLnet grant pending. First benchmark paper target: post-V18 clean run.
+
+> ## ⚠️ Correction Notice — 2026-07-17
+>
+> All byte-identical evidence cited in this document is **retracted** pending
+> re-benchmarking. A forensic audit (2026-07-16) found that byte-identical output
+> files across the benchmark run history were produced by a pipeline fallback
+> path that copied the imported original file to the output directory when
+> generation produced no output — a leak, not a generation. See the correction
+> notice in [README.md](./README.md) and the new mandatory leak-detection
+> precondition in [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) Step 0.
+>
+> Impact on this catalog: evidence lines citing byte-identical percentages,
+> "4/4 hubs byte-identical," or "100% byte-perfect" are marked
+> **[RETRACTED-EVIDENCE]** below. Contributions whose *design* stands independent
+> of those figures (algorithms, architecture, methodology) remain listed —
+> their *empirical validation* status is downgraded until clean re-benchmarks
+> exist. T2-5 (round-tripping) is the most affected: its validating evidence was
+> precisely the retracted metric. Non-byte-identical evidence (compile scores,
+> intent fidelity, semantic equivalence, import-resolution results from
+> provenance-verified runs) is unaffected by this vector.
 
 ---
 
@@ -25,11 +45,13 @@ empirical result is identified. Each entry includes:
 ---
 
 ### T1-1: Topological Context Compilation (TCC)
-**Status:** Named. Empirically validated (partial). Full paper after V18 clean topology benchmark.  
+**Status:** Named. Empirical validation **under re-evaluation (2026-07-17)** — byte-identical evidence retracted; full paper after clean re-benchmark under BENCHMARK_SPEC v1.1.  
 **Target venue:** MSR, ICSE, or PLDI workshop  
-**Evidence:** 90% byte-identical output without source code, 0% import hallucination,
-correct cycle handling. V15: 8.1/10 clean run, 4/4 critical hubs byte-identical.
-V-Poisoned-SF: 100% byte-perfect on external machine.
+**Evidence:** **[RETRACTED-EVIDENCE]** ~~90% byte-identical output without source code~~,
+~~V15: 8.1/10 clean run, 4/4 critical hubs byte-identical~~,
+~~V-Poisoned-SF: 100% byte-perfect on external machine~~ — see correction notice.
+Still standing: correct cycle handling (SCC contraction), wave-ordered generation,
+import-resolution results pending re-verification on provenance-gated runs.
 
 **What it is:**
 A compilation architecture that applies classical compiler theory — topological sorting,
@@ -55,9 +77,10 @@ for the current node — not by accident, but by construction.
 3. Exponential decay context pruning — relevance-weighted context by graph distance
 
 **Empirical results:**
-- 0% import hallucination (structural guarantee from wave ordering)
-- 90%+ byte-identical without source (IR density validation)
-- 100% byte-identical with source on external machine (pipeline determinism ceiling)
+- 0% import hallucination (structural guarantee from wave ordering) — *under
+  re-verification: figure derived from runs that included fallback-copied files*
+- ~~90%+ byte-identical without source (IR density validation)~~ **[RETRACTED-EVIDENCE]**
+- ~~100% byte-identical with source on external machine (pipeline determinism ceiling)~~ **[RETRACTED-EVIDENCE]**
 - Correct cycle handling with visual markers (SCC contraction working)
 
 ---
@@ -189,7 +212,9 @@ the Coder. Same pipeline, same infrastructure, different epistemic condition.
 ---
 
 ### T2-9: Three-Phase Pipeline Progression — Historical Benchmark Analysis
-**Status:** Complete. Full V1-V23 history analyzed.
+**Status:** **Under re-evaluation (2026-07-17)** — the phase structure is derived from
+v1-era scores whose byte-identical dimensions are unverifiable; the qualitative
+phase narrative (bug-signature elimination timeline) stands on non-byte evidence.
 **Target venue:** Section of T1-5 (benchmark methodology paper) — historical validation
 
 **What it is:**
@@ -201,8 +226,9 @@ Fatal hub failures common. Flash Lite V10: 2.8/10, −71% LOC, 2 fatal hub trunc
 13 DROP-DECORATOR, 9 ENGINE-INJECT. Pipeline not yet protecting generation.
 
 **Phase 2 (V14-V15): Wave 0-2 improvements (7.4-8.1/10)**
-First zero traditional bug signatures (V14). First 4/4 byte-identical hubs (V15).
-+1.6 point improvement from documented pipeline improvements. Reproducible.
+First zero traditional bug signatures (V14). ~~First 4/4 byte-identical hubs (V15)~~
+**[RETRACTED-EVIDENCE — hub byte-identity unverifiable, see correction notice]**.
++1.6 point improvement from documented pipeline improvements.
 
 **Phase 3 (V19-V23): Post-pipeline-fixes (7.1-8.1/10)**
 Multiple models cluster 7.1-7.9 regardless of parameter count:
@@ -214,7 +240,10 @@ on the same model. Pipeline is the dominant quality variable.
 
 **The landmark data point:**
 Flash Lite V10 → V23: 2.8/10 → 7.7/10. +4.9 points. Same model. Pipeline only.
-This is the single strongest empirical argument for TCC's architectural significance.
+*(2026-07-17: magnitude under re-evaluation — both scores are v1 judge-estimated
+with byte-identical-weighted dimensions; the delta's direction is supported by
+compile/truncation/decorator evidence but the figure must be re-established under
+BENCHMARK_SPEC v1.1 before being cited as the headline argument.)*
 
 ---
 
@@ -248,8 +277,10 @@ d=3+:  C=0.12 → registry identity only (distant nodes)
 
 The thresholds correspond to meaningful semantic boundaries — the difference
 between "what this node does," "what it exports," and "that it exists."
-The decay model predicts these breakpoints should matter. Benchmark results
-validate that they do: 0% import hallucination, 90%+ byte-identical output.
+The decay model predicts these breakpoints should matter. The benchmark evidence
+previously cited here (0% import hallucination, ~~90%+ byte-identical output~~
+**[RETRACTED-EVIDENCE]**) is under re-verification; the validation experiment
+must be re-run under BENCHMARK_SPEC v1.1 before this claim is cited.
 
 **Why it's novel:**
 Nobody has formalized context relevance as a function of dependency graph distance.
@@ -363,14 +394,19 @@ the start of the array and therefore the first evicted under naive budget manage
 ---
 
 ### T2-5: Round-Tripping as a Structural Property of Dense IR
-**Status:** Empirically validated.  
-**Evidence:** V15 benchmark (8.1/10, 90%+ byte-identical), V-Poisoned-SF (100%)
+**Status:** **Under re-evaluation (2026-07-17)** — the validating evidence for this
+contribution was precisely the retracted byte-identical metric. This is the most
+affected entry in the catalog.  
+**Evidence:** **[RETRACTED-EVIDENCE]** ~~V15 benchmark (8.1/10, 90%+ byte-identical),
+V-Poisoned-SF (100%)~~ — see correction notice.
 
-90%+ byte-identical output without source code means Code → Graph → Code is a stable
-cycle. This is not a feature built on top of grAIph — it's a consequence of IR density.
-The graph encodes enough semantic information to reconstruct the original with high
-fidelity. Validated by the poisoned run ceiling (100% when source is available) and
-the clean run performance (90%+ without source).
+The claim was: 90%+ byte-identical output without source code means Code → Graph →
+Code is a stable cycle, as a consequence of IR density. With the byte-identical
+population now known to be pipeline fallback copies in every auditable run, this
+claim is **unsupported until a provenance-gated re-benchmark produces genuine
+byte-identical or near-identical output**. The hypothesis remains testable and the
+IR-density argument remains coherent — but it is currently a hypothesis, not a
+finding. Do not cite as validated.
 
 ---
 
@@ -390,9 +426,15 @@ circular architecture. This becomes the `cycle:over-coupling` conformance rule.
 ---
 
 ### T2-8: Weak-Model Benchmark Finding — Pipeline Is The Bottleneck
-**Status:** Validated. V10 → V23 (Flash Lite) and V20 → V22 (Gemma) progressions.
+**Status:** **Under re-evaluation (2026-07-17).** Direction supported by
+non-byte-identical evidence; magnitudes unverifiable. V10 → V23 (Flash Lite) and
+V20 → V22 (Gemma) progressions.
 **Target venue:** Section of T1-5 (benchmark methodology paper)
-**Evidence:** V20 (4.8/10, 5.4% identical) → V22 (8.1/10 adjusted, 73% identical) — same 2.3B Q4 model, pipeline fixes applied between runs. +3.3 point improvement from pipeline alone.
+**Evidence:** V20 (4.8/10, 5.4% identical) → V22 (8.1/10 adjusted, ~~73% identical~~
+**[RETRACTED-EVIDENCE — identical ratio unverifiable]**) — same 2.3B Q4 model,
+pipeline fixes applied between runs. The score deltas weight byte-identical
+dimensions (~30% under scoring v1) and must be re-established under
+BENCHMARK_SPEC v1.1 before citation.
 
 **What it is:**
 A 2.3B parameter model running at Q4 quantization (fits in 2GB RAM) achieves 8.1/10
@@ -401,8 +443,8 @@ V20 (4.8/10) and V22 (8.1/10) is entirely pipeline infrastructure, not model cap
 
 **Specific findings:**
 - Zero ENGINE-PLUGIN-INJECT — first clean run in benchmark history (W1-T3 Coder prohibition worked)
-- 4/4 critical hubs byte-identical — same as V15 frontier model result
-- 73% file stability — competitive with V15's 70.3%
+- ~~4/4 critical hubs byte-identical — same as V15 frontier model result~~ **[RETRACTED-EVIDENCE]**
+- ~~73% file stability — competitive with V15's 70.3%~~ **[RETRACTED-EVIDENCE]**
 - 6 tsc errors, all single-character typos (1 missing `f`, 1 missing `}`, 1 wrong bracket)
 - Fix 3 characters → 0 compile errors
 
@@ -506,7 +548,7 @@ degrade all neighbor content to stubs when budget is exhausted.
 | T2-2 | Dual-hash drift detection | Technical report / blog | Underappreciated — write soon | None |
 | T2-3 | Triage inversion principle | Blog → workshop paper | Accessible framing | None |
 | T2-4 | Sacred section ContextBudget | Blog | Implement first | ContextBudget wiring (PEP RE2) |
-| T2-5 | Round-tripping finding | Finding within T1-1 | Validated | None |
+| T2-5 | Round-tripping finding | Finding within T1-1 | Under re-evaluation (2026-07-17) | Provenance-gated re-benchmark (spec v1.1 Step 0) |
 | T2-6 | Cycle-aware hashset ScopePruning | Section of T1-1 | After topology merges | Topology branch merge |
 | T2-7 | AssertionHintContract technique | Section of T1-5 | Validated | None |
 | T3-1 | Model capability handshake | Blog | Done | None |
@@ -565,3 +607,4 @@ results are strong enough to warrant it. Otherwise remains a section of T1-1.
 | 2026-05-21 | T1-6 added — Context Decay in Graph-Structured Generation. Nobody formalizes context relevance as a function of graph distance. β=0.7 empirically calibrated. Three-tier degradation as discretization of continuous decay curve. Target venue: EMNLP/ACL. Different audience from T1-1. |
 | 2026-05-21 | V23 (Flash Lite) added — 7.7/10 floor. +4.9 pts from V10 (2.8). ORCHESTRATOR-SKIP new failure mode. 9.2/10 semantic on DIFF files. Four-metric framework formalized. T2-9 added (three-phase historical analysis). Adjusted score definition clarified — style diffs excluded. |
 | 2026-05-21 | V22 (Gemma 4 E2B, 2.3B Q4) added — 7.6/10 floor, 8.1/10 adjusted. Ties V15 frontier model on adjusted score. T2-8 weak-model benchmark finding validated. Zero ENGINE-INJECT first time in benchmark history. 3 compile errors all single-character typos → QA Squire mandatory compile check formalized. UUID placeholder pattern → graph spec fix (Level 1). Abstraction hierarchy for pipeline fix layers documented. |
+| 2026-07-17 | **Correction:** all byte-identical evidence retracted following the 2026-07-16 forensic audit (pipeline fallback copies of the imported original, not generations — see notice at top and BENCHMARK_SPEC v1.1 Step 0). T1-1/T1-6 empirical validation downgraded to under re-evaluation; T2-5 (round-tripping) downgraded to hypothesis; T2-8/T2-9 magnitudes under re-evaluation, directions retained on non-byte evidence. **Future candidate contribution:** the forensic method used to catch this — provenance auditing of claimed-generated output by cross-referencing byte-identical files against generation events, line-ending fingerprints, and write-path timestamps — may itself become a documented methodological contribution ("leak detection in generation benchmarks") once fully characterized. Not cataloged yet. |

@@ -89,14 +89,26 @@ The pipeline never deadlocks on cycles. It handles them structurally.
 
 ## The Result
 
+> ⚠️ **Correction (2026-07-17):** the byte-identical figures previously shown here
+> are **retracted**. A forensic audit (2026-07-16) traced byte-identical output
+> files to a pipeline fallback path that copied the imported original into the
+> output directory — a leak, not a generation. See the correction notice in the
+> repository [README](../README.md) and the mandatory leak-detection precondition
+> in [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md) Step 0.
+
 ```
-0%    import hallucination    (structural guarantee from wave ordering)
-90%+  byte-identical output   (without source code — IR density validation)
-100%  byte-identical          (with source — pipeline determinism ceiling)
+0%    import hallucination    (structural guarantee from wave ordering — under
+                               re-verification on provenance-gated runs)
 ```
 
-A 2.3 billion parameter model governed by TCC produces output competitive
-with frontier models on structured code generation tasks.
+Previously reported here and now retracted: "90%+ byte-identical output without
+source" and "100% byte-identical with source." These figures came from runs
+contaminated by the fallback-copy path and will be re-established — whatever the
+clean numbers turn out to be — under the corrected methodology.
+
+The structural claims of TCC (wave ordering, SCC contraction, decay-based context
+allocation) are design properties and stand as designed; their quantitative
+validation is being redone against a verified-clean baseline.
 
 ---
 
