@@ -1,205 +1,217 @@
 # grAIph
 
-**Topological Context Compilation for LLM Code Generation**
+**Graph-structured infrastructure for LLM software generation.**
 
-> LLMs don't lack the capacity. They lack the structure.
+grAIph explores a practical question:
 
----
+> What changes when software architecture is represented explicitly as a graph instead of being reconstructed implicitly inside a prompt?
 
-> ## ⚠️ Correction Notice — 2026-07-17
->
-> A benchmark integrity issue was identified during an internal forensic audit on
-> 2026-07-16. **All byte-identical file counts previously reported across the
-> benchmark run history are retracted.**
->
-> The audit found that in every run that could be audited (V33–V50), 100% of
-> byte-identical output files were produced by a pipeline fallback path — the
-> batch-repair stage wrote the imported original file back to the output directory
-> whenever a node's generation produced no output. These files were leaked copies
-> of the ground truth, not model generations. Every audited byte-identical file
-> correlates with a `filesGenerated: 0` generation event. Runs before V33 cannot
-> be retro-audited (generation event logs were not retained) and their
-> byte-identical counts are retracted as unverifiable.
->
-> Composite scores that weight byte-identical dimensions (roughly 30% under
-> scoring v1) are under re-evaluation. Compile, intent-fidelity, and semantic
-> metrics do not depend on this vector and are unaffected by it.
->
-> Affected claims in this repository are labeled rather than deleted, consistent
-> with how earlier integrity findings were handled (see the version history in
-> [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md)). Re-benchmarking will follow under a
-> corrected pipeline with a mandatory leak-detection precondition — see
-> **BENCHMARK_SPEC.md Step 0**.
+The system models generation units, dependencies, interfaces, constraints, and usage relationships as graph state. It compiles that state into generation context, treats model output as an unverified candidate, evaluates the candidate with deterministic checks, and reconciles implementation evidence back against the graph before a host can record committed state.
+
+**Current research status:** the architecture is implemented and actively evolving in a private development workspace. The current relation-surface, binding-contract, structural-contract, and evidence-reconciliation mechanisms are experimental. A fresh provider-backed controlled A/B is still pending, so grAIph is not currently making a benchmark-superiority claim.
 
 ---
 
-## What grAIph Is
+## The problem
 
-grAIph is a VS Code extension and code synthesis pipeline implementing **Topological
-Context Compilation (TCC)** — a novel architecture that applies compiler theory to
-LLM context window management.
+Raw model capability does not by itself answer the systems questions that appear in larger generation tasks:
 
-The graph is the source language. The pipeline compiles it into production code.
+- Which dependencies belong in context for this generation unit?
+- Which parts of those dependencies are required?
+- In what order should interconnected units be generated?
+- Which interfaces are requirements rather than suggestions?
+- How should plausible output be distinguished from accepted project state?
+- What should happen when emitted code disagrees with the graph that requested it?
+- How can a benchmark distinguish generation from source leakage or recovery behavior?
 
----
-
-## The Result
-
-> ⚠️ **Under re-evaluation (2026-07-17):** the figures in this section are
-> v1 judge-estimated scores whose byte-identical dimensions are affected by the
-> retracted metric (see correction notice above). The direction of the deltas is
-> supported by compile, intent, and semantic evidence, but the specific numbers
-> await clean re-benchmarking under the corrected methodology.
-
-A 2.3 billion parameter model (Q4 quantized, fits in 2GB RAM) governed by grAIph
-scored within 0.1 points of frontier models on a 37-file TypeScript benchmark.
-
-The same model scored **2.8/10 before pipeline improvements** and **7.7/10 after**
-with zero model change.
-
-The working hypothesis remains that pipeline infrastructure is a dominant quality
-variable — now to be re-established against a verified-clean baseline.
+grAIph treats these as architecture, orchestration, validation, and evidence problems.
 
 ---
 
-## Three Pillars
+## The architecture
 
-### 1. Topological Context Compilation
-grAIph treats a codebase as a dependency graph. An exponential decay formula
-determines exactly what context each node needs during generation — the further
-a dependency is in graph hops, the less information gets attached. No noise.
-No drift. Kahn's algorithm dictates generation order, ensuring each file generates
-only after its imports are ready, maximizing context window utility.
+### 1. A graph as an intermediate representation
 
-### 2. Quality Accountability Pipeline
-Seven specialized agents catch and route errors to who should fix them — static
-tooling or LLM agents. Converts stochastic LLM output into verifiable,
-compilable code. Runs after generation, before output.
+Nodes represent generation units. Edges represent dependencies or structural relationships. Node and edge surfaces can carry interfaces, contracts, usage expectations, and provenance.
 
-### 3. Visual IDE
-A node-based canvas where developers work with architecture instead of syntax.
-The graph is the source of truth. Bidirectional — the pipeline compiles graphs
-into code, and imports existing codebases back into graphs.
+The graph is not presented as a complete semantic model of a codebase. It is an explicit representation of the architecture that the generation pipeline is allowed to use and update.
 
----
+### 2. Topological ordering and context compilation
 
-## Why It Works: Spatial Physics
+Generation order is derived from graph topology. Strongly connected components can be handled structurally, then dependency waves provide a deterministic order for ordinary generation.
 
-TCC is not just a compiler analogy — it obeys the same mathematical laws as
-physical attenuation.
+Context is allocated from graph relationships rather than by indiscriminately including every available file. Direct neighbors can receive richer representations; farther nodes can be reduced to surfaces, symbols, or identity. The particular allocation policy is configurable and remains a research variable.
 
-Context relevance decays exponentially with graph distance. Kahn wave ordering
-propagates generation in dependency order — the same way neurons fire downstream
-only after upstream signals arrive. The topology is geometry and gravity: nodes
-cluster by semantic weight, edges carry influence that attenuates with distance.
+An exponential attenuation rule is one policy under investigation. It is not claimed to be a universal law, an optimal setting, or a description of how LLMs literally behave.
 
-The exponential decay formula `C(v) = α · e^{-β · d(v₀, v)}` is not a heuristic.
-It is the mathematical form of physical signal attenuation applied to a new substrate.
+### 3. A staged candidate pipeline
 
-LLM code generation obeys spatial physics. grAIph is designed accordingly.
+The normal decompressed profile uses this candidate chain:
 
----
+~~~text
+TopologyScrutineer
+        ↓
+PatternSpecialist
+        ↓
+TaskDecomposer
+        ↓
+Coder
+        ↓
+QASquire
+        ↓
+Conformance
+        ↓
+QualityGate
+        ↓
+Grapher
+        ↓
+host persistence and RecordKeeper
+~~~
 
-## Model Agnostic
+The model is one part of the pipeline. A model response is not, by itself, a successful generation.
 
-Tested on:
-- GitHub Copilot SDK
-- Anthropic API + Anthropic-compatible endpoints
-- OpenAI-compatible endpoints
-- Google Gemini SDK
-- NVIDIA NIM free tier
-- LM Studio (local models via llama.cpp)
+### 4. Candidate versus committed state
 
-Works with models as small as **Gemma 4 E2B (2.3B effective parameters)**.
+grAIph separates what the pipeline produced from what the host durably accepted:
 
----
+~~~text
+model response
+    ↓
+unverified candidate
+    ↓
+validation and conformance
+    ↓
+graph reconciliation
+    ↓
+host persistence
+    ↓
+receipt and committed graph/file state
+~~~
 
-## Benchmark History
+The committed status is derived only when validation passes and persistence reports committed state that covers the candidate targets. A response, validation pass, or graph proposal alone does not cross that boundary.
 
-50+ runs across 6 models. Documented methodology.
+### 5. Declared architecture and observed evidence
 
-| Run | Model | Score | Notes |
-|-----|-------|-------|-------|
-| V-Poisoned-SF | GPT-4o | ~~100% byte-perfect~~ † | ~~Pipeline determinism ceiling.~~ External machine (SF). Byte-identical result retracted † |
-| V15 | Unknown frontier | 8.1/10 † | ~~First 4/4 hub byte-identical run~~ Byte-identical result retracted † |
-| V22 | Gemma 4 E2B (2.3B Q4) | 8.1/10 adj † | Zero ENGINE-INJECT. Single-model pipeline. |
-| V23 | Flash Lite | 7.7/10 † | Was 2.8/10 in V10. Delta magnitude under re-evaluation † |
-| V10 | Flash Lite | 2.8/10 | Pre-pipeline-fixes baseline |
+The graph begins with declared architecture, but emitted code is evidence too. Experimental reconciliation can inspect actual usage—such as calls, construction, injection, references, and imported-value reads—and create or strengthen graph relations.
 
-> † **2026-07-17:** Byte-identical results in this table are retracted — a forensic
-> audit traced byte-identical output files to a pipeline fallback path that copied
-> the imported original to the output directory, not to model generation. Scores
-> shown are v1 judge-estimated and are under re-evaluation where they weight
-> byte-identical dimensions. See the correction notice at the top of this README
-> and BENCHMARK_SPEC.md Step 0.
-
-Full methodology: see [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md)
+This is intended to make disagreement explicit. Evidence is not allowed to silently erase user-declared architectural intent, and an observed use is not treated as proof that the broader research hypothesis has been validated.
 
 ---
 
-## Architecture & Research
+## Current research program
 
-This repository contains the full methodology and architecture documentation:
+The current controlled experiment focuses on whether explicit relation surfaces, usage bindings, and structural contracts change generation behavior under source suppression.
 
-- [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) — Versioned benchmark methodology v1.0
-- [TOPOLOGY_LAYOUT.md](./TOPOLOGY_LAYOUT.md) — Topology layout algorithm specification
-- [ACADEMIC_CONTRIBUTIONS.md](./ACADEMIC_CONTRIBUTIONS.md) — Publication map (9 contributions)
-- [docs/tcc-primer.md](./docs/tcc-primer.md) — Topological Context Compilation explained
-- [docs/pipeline-overview.md](./docs/pipeline-overview.md) — Architecture overview
+The fresh A/B is designed to use:
 
----
+- the same pinned source revision;
+- a fresh graph for each arm;
+- the same real provider, model, sampling settings, workspace, and run count;
+- self-generated near-neighbor source;
+- explicit manifests, provenance, and prompt-leak audits;
+- a minimum of five repetitions per arm.
 
-## Status
+That provider-backed A/B has **not yet been completed and reviewed**. Until it is, the related features remain experimental defaults and the release decision remains blocked.
 
-- VS Code extension — private repo, pre-grant
-- NLnet NGI Zero Commons Fund application submitted May 2026, decision pending
-- Open core release after grant milestone 1
+See:
 
-**Pipeline source opens at the open core release milestone.**
-Watch this repo for updates.
-
----
-
-## Research Contributions
-
-grAIph has produced several publishable findings:
-
-**Tier 1 (directly publishable):**
-- Topological Context Compilation — novel compilation architecture (MSR/ICSE target)
-- Context Decay in Graph-Structured Generation — `C(v) = α · e^{-β · d(v₀, v)}`, β=0.7 (EMNLP/ACL target)
-- Two-Track Benchmark Methodology with AssertionHintContract
-- Graph Diameter Threshold for Clustering Activation
-- Rendon's Geometric Expansion (Kahn + gravitational Y-relaxation)
-
-Full catalogue: [ACADEMIC_CONTRIBUTIONS.md](./ACADEMIC_CONTRIBUTIONS.md)
+- [Current state](./CURRENT_STATE.md)
+- [Research hypotheses](./RESEARCH_HYPOTHESES.md)
+- [Experiment protocol](./docs/experiment-protocol.md)
 
 ---
 
-## Why This Matters
+## Benchmark integrity
 
-Current LLM code generation tools (Cursor, Copilot, LangChain) either rely on
-model brute force or route prompts without structural guarantees. grAIph's
-hypothesis: **LLMs don't lack capability — they lack structure.**
+On July 17, 2026, the project publicly recorded a benchmark correction. An audit found that byte-identical files in the auditable run history had been written by a fallback path that flushed import-seeded source content when generation produced no file. Those files were not model generations.
 
-The benchmark record supports this directionally. The quantitative claims are
-being re-established against a verified-clean baseline following the 2026-07-17
-correction (see notice above). This is a research claim under active empirical
-validation — including validation of the benchmark itself.
+The affected byte-identical claims were retracted. Earlier runs without retained generation evidence were treated as unverifiable. The correction is preserved as part of the project record:
+
+- [Benchmark correction](./archive/2026-07-17-benchmark-correction.md)
+- [Archived benchmark specification v1.1](./archive/BENCHMARK_SPEC-v1.1.md)
+
+The active protocol requires run provenance, explicit eligibility, source-leak auditing, generation evidence, and a declared integrity arm before a result can support a conclusion. See [Benchmark specification v2](./BENCHMARK_SPEC.md).
+
+---
+
+## Public claim boundary
+
+### Verified implementation properties
+
+- Graph-structured generation pipeline
+- Topology-derived generation ordering
+- Explicit candidate versus committed-generation boundary
+- Validation, conformance, and quality-gate stages
+- Provider abstraction with explicit backend identity
+- Per-language capability reporting
+- Benchmark manifests and provenance machinery
+- Prompt-leak auditing machinery
+- Topology-derived layout implementation
+
+### Implemented but experimental
+
+- Unified relation surfaces
+- Binding contracts
+- Structural contracts
+- Evidence rewiring and contract retraction
+- AST-assisted usage evidence
+- Alternative near-neighbor context representations
+- Adaptive contract pruning
+
+### Not currently claimed
+
+- Benchmark superiority over frontier coding systems
+- That a fixed exponential decay rule is optimal
+- That the retracted byte-identical scores are evidence
+- That the historical 2.8-to-7.7 comparison is a current result
+- That experimental mechanisms should become defaults
+- That implementation novelty alone establishes research novelty
+- That a model response is equivalent to committed project state
+
+The maintained boundary is [CURRENT_STATE.md](./CURRENT_STATE.md).
+
+---
+
+## Scope of this repository
+
+The full development workspace remains private while the system is being hardened. This public repository contains:
+
+- architecture documentation;
+- research hypotheses;
+- benchmark methodology;
+- experimental protocols;
+- topology and evidence-reconciliation descriptions;
+- historical corrections;
+- public project state.
+
+It does not contain private source code, raw internal planning material, development logs, credentials, benchmark outputs, or unpublished implementation artifacts.
+
+---
+
+## Documentation
+
+- [CURRENT_STATE.md](./CURRENT_STATE.md) — current public claim boundary
+- [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) — active v2 benchmark protocol
+- [RESEARCH_HYPOTHESES.md](./RESEARCH_HYPOTHESES.md) — hypotheses and falsifiers
+- [docs/pipeline-overview.md](./docs/pipeline-overview.md) — generation architecture
+- [docs/tcc-primer.md](./docs/tcc-primer.md) — Topological Context Compilation primer
+- [docs/experiment-protocol.md](./docs/experiment-protocol.md) — current controlled A/B
+- [docs/evidence-reconciliation.md](./docs/evidence-reconciliation.md) — graph and implementation feedback
+- [TOPOLOGY_LAYOUT.md](./TOPOLOGY_LAYOUT.md) — deterministic topology-derived layout
+- [CITATION.cff](./CITATION.cff) — citation metadata
 
 ---
 
 ## Contact
 
-**hello@graiph.dev**
-[graiph.dev](https://graiph.dev)
+**Mateo Rendon Suarez**  
+Bogotá, Colombia
 
-Built by Mateo Rendon Suarez — Bogotá, Colombia.
-NLnet grant application submitted May 2026.
+hello@graiph.dev  
+[graiph.dev](https://graiph.dev)
 
 ---
 
 ## License
 
-Apache 2.0 — see [LICENSE](./LICENSE)
-
-Pipeline source releases under the same license at open core milestone.
+Apache 2.0 — see [LICENSE](./LICENSE).

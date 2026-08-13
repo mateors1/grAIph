@@ -1,180 +1,117 @@
 # Topological Context Compilation — A Primer
 
-## The Problem
+Topological Context Compilation (TCC) is grAIph's name for compiling graph-structured architecture into generation context and ordering decisions.
 
-LLM code generation has a context window problem. When generating a large codebase,
-the model needs information about dozens of files simultaneously. But context windows
-are finite. Put too much in and attention dilutes. Put too little in and the model
-hallucinates imports, wrong method signatures, incorrect architecture.
-
-Current approaches: bigger context windows, RAG retrieval, summarization heuristics.
-
-None of them ask the right question: **what is the correct information for this specific
-file, at this specific moment in the generation sequence?**
+It is a design approach and an implementation vocabulary. It is not a claim that LLM code generation follows a literal physical law.
 
 ---
 
-## The Insight
+## The problem
 
-A codebase is a dependency graph. Files import from other files. Some files depend
-on many others. Some are depended on by everything.
+A large software-generation task contains more relationships than a single undifferentiated prompt can represent reliably:
 
-In a dependency graph, **graph distance is a proxy for semantic relevance.**
+- files import other files;
+- interfaces constrain implementations;
+- shared utilities are reused across branches;
+- cycles require special handling;
+- downstream code depends on upstream names and shapes.
 
-A file that imports directly from `ViewManager` needs to know ViewManager's full
-interface. A file three hops away needs to know ViewManager exists. A file on a
-completely separate branch doesn't need to know about ViewManager at all.
+A larger context window does not decide which information is necessary for a particular generation unit. Retrieval can find text without explaining how the retrieved material fits into the architecture.
 
-This is the same insight compilers have used for sixty years — dependency-ordered
-compilation passes ensure each compilation unit's working context contains exactly
-what it needs. Compilers solved this for RAM on memory-constrained hardware.
-grAIph solves it for LLM context windows.
+TCC starts from an explicit graph and asks what representation of that graph is appropriate for the current unit and stage.
 
 ---
 
-## The Three Mechanisms
+## 1. The graph is an intermediate representation
 
-### 1. Context Decay Formula
+Nodes represent generation units. Edges represent dependencies or other relationships. Surfaces and contracts can describe what a node provides, what a consumer requires, and how usage is expected to occur.
 
-```
-C(v) = α · e^{-β · d(v₀, v)}
-
-where:
-  v₀ = target node (file being generated)
-  v  = neighbor node
-  d  = graph distance in hops
-  α  = 1.0 (baseline weight)
-  β  = 0.7 (empirically calibrated decay rate)
-```
-
-Information relevance decreases exponentially with graph distance.
-Empirically calibrated at β=0.7 across a 37-file TypeScript benchmark.
-
-**Three-tier degradation** operationalizes the continuous decay curve:
-
-| Distance | Content provided | Rationale |
-|----------|-----------------|-----------|
-| d=0 | Full content | This IS the target |
-| d=1 | Interface contracts + generated files | Direct imports |
-| d=2 | Symbol + return type only | Transitive dependencies |
-| d=3+ | Registry identity only | Distant context |
-
-### 2. Kahn Wave Ordering
-
-Kahn's algorithm produces a topological sort of the dependency graph.
-Files with no dependencies generate first (Wave 0). Files that depend only
-on Wave 0 generate next (Wave 1). And so on.
-
-**Why this matters for LLMs:**
-
-When a Wave 3 file generates, Wave 0-2 outputs are already in the context window
-as recently generated content. The sliding window naturally contains the most
-relevant information — not because of retrieval, but because generation order
-IS relevance order.
-
-The topology ordering makes the sliding window semantically aligned with the
-dependency graph by construction.
-
-### 3. SCC Contraction for Cycles
-
-Real codebases have circular dependencies. Kahn's algorithm requires a DAG.
-
-Tarjan's Strongly Connected Components algorithm detects cycles before Kahn's runs.
-Each cycle is contracted to a virtual node. Kahn's runs on the resulting DAG.
-Cycle members receive stable wave assignments and generate as co-located peers.
-
-The pipeline never deadlocks on cycles. It handles them structurally.
+The graph is not assumed to be perfect. It is an architectural projection that can be checked against emitted implementation evidence.
 
 ---
 
-## The Result
+## 2. Topology supplies an order
 
-> ⚠️ **Correction (2026-07-17):** the byte-identical figures previously shown here
-> are **retracted**. A forensic audit (2026-07-16) traced byte-identical output
-> files to a pipeline fallback path that copied the imported original into the
-> output directory — a leak, not a generation. See the correction notice in the
-> repository [README](../README.md) and the mandatory leak-detection precondition
-> in [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md) Step 0.
+A dependency graph can be analyzed into strongly connected components and topological waves.
 
-```
-0%    import hallucination    (structural guarantee from wave ordering — under
-                               re-verification on provenance-gated runs)
-```
+~~~text
+Wave 0: independent sources
+Wave 1: nodes depending on Wave 0
+Wave 2: nodes depending on earlier waves
+...
+~~~
 
-Previously reported here and now retracted: "90%+ byte-identical output without
-source" and "100% byte-identical with source." These figures came from runs
-contaminated by the fallback-copy path and will be re-established — whatever the
-clean numbers turn out to be — under the corrected methodology.
-
-The structural claims of TCC (wave ordering, SCC contraction, decay-based context
-allocation) are design properties and stand as designed; their quantitative
-validation is being redone against a verified-clean baseline.
+This order gives the pipeline a deterministic starting point. It does not guarantee that a model will produce correct code, but it makes generation dependencies explicit and prevents a downstream unit from being treated as if its upstream context already existed when it does not.
 
 ---
 
-## The Compiler Analogy
+## 3. Context is compiled, not simply copied
 
-This is not a metaphor. It is structural correspondence:
+For a target node, the compiler can choose a representation for each neighbor:
 
-| Traditional Compiler | grAIph (TCC) |
-|---------------------|--------------|
-| Source language | JSON graph (editionFace + relationFace) |
-| Type system | Graph relation contracts |
-| Type checker | QualityGateAgent |
-| Compilation pipeline | 7-agent sequential pipeline |
-| Context window schedule | Kahn wave ordering |
-| Linker | RecordKeeper + registry artifacts |
-| Header files | Precomputed stubs from declared outputs |
-| Output | Verified, compilable code in any target language |
+| Relationship | Possible representation |
+|---|---|
+| target | task description and current constraints |
+| direct dependency | interface, relation surface, bindings, and selected generated content |
+| transitive dependency | symbols, signatures, or structural summary |
+| distant or unrelated unit | identity or no context |
 
-The LLM is the assembly-line worker. The graph is the foreman.
+An attenuation formula may be used as one policy for choosing among these representations. Its parameters are configuration and experiment variables, not universal constants.
 
----
+The key design question is:
 
-## Why It's Closer To Nature Than It Should Be
-
-TCC arrived through benchmark iteration and engineering intuition. Only in
-retrospect did the underlying physics become visible.
-
-The context decay formula is the mathematical form of **physical signal attenuation**
-— the same equation governing how sound, light, and gravitational influence diminish
-with distance. It was not derived from physics. It was calibrated empirically at β=0.7
-and happened to match a law nature already knew.
-
-Kahn wave ordering is **synaptic propagation** — downstream nodes cannot fire until
-upstream signals arrive. Generation order enforces the same causality constraint
-neurons operate under.
-
-The topology layout algorithm uses gravitational relaxation — nodes cluster by
-semantic weight, edges exert force proportional to relationship strength.
-
-**LLM code generation obeys spatial physics.** The pipeline is designed accordingly —
-not because physics was the starting point, but because the structure of the problem
-and the structure of physical information propagation are the same structure.
-
-This convergence is not coincidence. It is the consequence of applying rigorous
-constraint to a stochastic system. Nature solved information routing under resource
-constraints long before computers existed. TCC is one rediscovery of those solutions
-in a new substrate.
+> What information is necessary for this unit at this point in the generation sequence?
 
 ---
 
-## Why Nobody Else Is Doing This
+## 4. Contracts make requirements explicit
 
-Current LLM code generation tools treat the context window as a prompt engineering
-problem — what text should I put in the prompt?
+A model can receive more useful structure than raw source text:
 
-TCC treats it as a compiler paging problem — in what order should I generate, and
-what information does each generation unit need?
+- provided and required relation surfaces;
+- usage-kind bindings;
+- structural expectations;
+- import/path constraints;
+- language capability boundaries.
 
-These are the same problem. Compilers solved it for RAM. grAIph solves it for LLMs.
+These contracts are intended to reduce ambiguity. They are not proof that a model followed them, which is why conformance and emitted-code analysis remain separate stages.
 
 ---
 
-## Further Reading
+## 5. Generated code is evidence
 
-- [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md) — Full benchmark methodology
-- [TOPOLOGY_LAYOUT.md](../TOPOLOGY_LAYOUT.md) — Topology layout algorithm
-- [ACADEMIC_CONTRIBUTIONS.md](../ACADEMIC_CONTRIBUTIONS.md) — Publication map
+After emission, code can be inspected for actual imported-symbol use. That evidence can refine graph relations or reveal that a declared request was not realized.
 
-*Mateo Rendon Suarez — hello@graiph.dev*
+The system keeps two facts separate:
+
+- **declared intent:** what the graph or user requested;
+- **observed evidence:** what the emitted program actually used.
+
+That distinction makes it possible to preserve a user-drawn architectural edge while reporting an unfulfilled binding rather than silently rewriting history.
+
+---
+
+## 6. Candidate state is not committed state
+
+TCC ends in a host boundary, not at the model response:
+
+~~~text
+candidate → validation → conformance → persistence → receipt → committed state
+~~~
+
+The distinction matters for both user trust and evaluation. A candidate that failed to persist or failed required validation must not be counted as a committed generation.
+
+---
+
+## What TCC does not claim
+
+TCC does not currently claim:
+
+- that graph distance is a universal semantic measure;
+- that exponential decay is optimal;
+- that graph-structured generation beats frontier coding systems;
+- that a previous benchmark score establishes the current result;
+- that the mechanisms are novel without comparative literature work;
+- that a model response is equivalent to accepted project state.
+
+The active research questions are collected in [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md).
