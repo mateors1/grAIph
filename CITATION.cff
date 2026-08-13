@@ -1,37 +1,30 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
+message: "If you use or discuss this work, please cite the repository and the version you consulted."
 type: software
-title: "grAIph: Topological Context Compilation for LLM Code Generation"
+title: "grAIph: Graph-Structured Infrastructure for LLM Software Generation"
 abstract: >
-  grAIph implements Topological Context Compilation (TCC) — a novel architecture
-  applying compiler theory to LLM context window management. The dependency graph
-  is the source language. Kahn's algorithm determines generation order. An exponential
-  decay formula governs context allocation. A multi-agent quality pipeline converts
-  stochastic LLM output into verifiable, compilable code.
+  grAIph is a research system for representing software-generation architecture
+  as an explicit graph. The graph is compiled into topological generation order,
+  context representations, contracts, validation stages, and evidence-aware
+  reconciliation. The public repository documents the architecture, hypotheses,
+  benchmark protocol, and current evidence boundaries; the implementation remains
+  private while the system is being hardened.
 authors:
-  - family-names: Rendon Suarez
-    given-names: Mateo
-    email: hello@graiph.dev
+  - family-names: "Rendon Suarez"
+    given-names: "Mateo"
+    email: "hello@graiph.dev"
     country: CO
-repository-code: https://github.com/mateors1/graiph
+repository-code: https://github.com/mateors1/grAIph
 url: https://graiph.dev
 license: Apache-2.0
-version: 0.1.0-methodology
-date-released: "2026-05-25"
+version: 0.2.0-research-preview
+date-released: "2026-08-13"
 keywords:
   - llm
   - code-generation
-  - compiler
-  - topological-context-compilation
-  - benchmark
-  - vscode-extension
-  - context-window
+  - software-architecture
   - graph
-references:
-  - type: article
-    title: "Topological Context Compilation: Benchmark Methodology and Empirical Validation"
-    authors:
-      - family-names: Rendon Suarez
-        given-names: Mateo
-    status: in-preparation
-    year: 2026
+  - compiler
+  - context-compilation
+  - benchmark-methodology
+  - vscode

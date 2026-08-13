@@ -1,97 +1,90 @@
 # Contributing to grAIph
 
-Thank you for your interest in grAIph.
+Thank you for taking the time to read or improve the public grAIph materials.
 
-This repository currently contains **methodology documentation only** — the benchmark
-specification, architecture overview, topology algorithm, and academic contributions
-map for the grAIph pipeline.
+This repository is a public research teaser and methodology record. It does not contain the private implementation workspace.
 
 ---
 
-## Current Status
+## What is welcome
 
-The pipeline source code is **not yet public**.
+Issues and pull requests are useful for:
 
-grAIph is in pre-grant development. The NLnet NGI Zero Commons Fund application
-was submitted May 2026. Open core release is tied to **grant milestone 1** — the
-pipeline architecture refactor and benchmark validation deliverable.
+- correcting a factual or link error;
+- identifying ambiguous terminology;
+- pointing out a missing methodological control;
+- suggesting a clearer public explanation;
+- adding a relevant citation or prior-work pointer;
+- reporting an attempted replication with enough context to inspect it.
 
-When the source opens, this guide will be updated with real contribution instructions.
-
----
-
-## What You Can Do Right Now
-
-### Read and cite the methodology
-
-All architecture documentation is public and citable:
-
-- [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md) — Two-track benchmark methodology v1.0
-- [docs/tcc-primer.md](tcc-primer.md) — Topological Context Compilation explained
-- [ACADEMIC_CONTRIBUTIONS.md](../ACADEMIC_CONTRIBUTIONS.md) — Publication map
-- [TOPOLOGY_LAYOUT.md](../TOPOLOGY_LAYOUT.md) — Layout algorithm specification
-
-Academic citation: see [CITATION.cff](../CITATION.cff) at the repo root.
-
-### Report issues with the methodology
-
-If you find errors, gaps, or inconsistencies in the documented methodology, open
-an issue. Label it `methodology`.
-
-Specifically useful:
-- Errors in the benchmark specification
-- Missing prior work citations (if you know of related work on context-window
-  management using graph structure, please open an issue)
-- Inconsistencies between documents
-
-### Replicate the benchmark
-
-The benchmark methodology is fully documented in [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md).
-If you replicate any aspect of the benchmark with your own models or infrastructure,
-open an issue with your results. Replication is the foundation of the research claims.
-
-### Watch for open core release
-
-Star or watch this repository to be notified when the pipeline source opens.
-The release will happen as a single coherent push at milestone 1 delivery,
-not as an incremental trickle.
+Please keep proposed changes scoped to public documentation and research methodology.
 
 ---
 
-## What To Expect at Open Core Release
+## Current public boundary
 
-When the source opens:
+The public repository contains documentation, hypotheses, benchmark protocol, topology/layout description, evidence-reconciliation description, citation metadata, and historical corrections.
 
-- Full monorepo: `@graiph/shared`, `@graiph/core`, `@graiph/vscode-ext`, `@graiph/webview-ui`
-- Seven-agent pipeline source
-- Benchmark harness
-- Real contribution guide with setup instructions, architecture decisions, and PR process
+It does not contain:
 
-The pipeline is TypeScript throughout. VS Code extension development experience
-is useful but not required for core pipeline contributions.
+- private source code;
+- raw internal planning or development logs;
+- credentials or provider configuration;
+- unreviewed benchmark outputs;
+- unpublished implementation artifacts.
 
----
-
-## Contact
-
-Questions about the methodology, research directions, or collaboration:
-
-**hello@graiph.dev**
-
-For potential research collaboration on the academic contributions (particularly
-the context decay paper and benchmark methodology paper), direct email is preferred
-over GitHub issues.
+Do not submit private source or internal-only material in an issue or pull request.
 
 ---
 
-## Code of Conduct
+## Before opening an issue
 
-grAIph is a research project. Contributions are expected to be technically rigorous,
-honest about uncertainty, and respectful of the work's empirical grounding.
+Search existing issues and read the current claim boundary:
 
-The benchmark results are what they are. The methodology is documented precisely
-so they can be reproduced, challenged, and extended — not defended.
+- [CURRENT_STATE.md](../CURRENT_STATE.md)
+- [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md)
+- [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md)
+
+For a benchmark concern, include the protocol version, the exact claim being questioned, and the evidence or reproduction that motivates it.
+
+For a documentation concern, include the affected path and a suggested correction when possible.
 
 ---
 
-*grAIph — graiph.dev*
+## Documentation change checklist
+
+Before opening a pull request:
+
+- confirm links resolve within the repository;
+- keep verified implementation facts separate from hypotheses;
+- label historical or retracted evidence clearly;
+- avoid unverified novelty, superiority, parity, or publication-readiness claims;
+- record dates when changing the public claim boundary;
+- do not include raw internal planning material;
+- update related documents when a filename or status changes.
+
+The July 2026 correction remains part of the public record. It should be clarified when necessary, not silently removed.
+
+---
+
+## Replications and experiments
+
+The active protocol requires a fresh graph per arm, pinned source and runtime revisions, explicit provider identity, complete manifests, prompt-leak auditing, candidate/commit receipts, and at least five repetitions per arm.
+
+A replication may report negative or inconclusive results. Do not present a single successful run as a general conclusion.
+
+See [docs/experiment-protocol.md](../docs/experiment-protocol.md) and [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md).
+
+---
+
+## Review expectations
+
+Pull requests should explain:
+
+1. what changed;
+2. why the change is supported;
+3. which documents are affected;
+4. what was checked;
+5. whether the change affects a claim, hypothesis, protocol, or historical record.
+
+The maintainer may ask for a narrower statement or additional evidence. The goal is a public record that remains legible and correct as the implementation evolves.
