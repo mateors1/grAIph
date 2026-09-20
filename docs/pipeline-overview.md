@@ -1,57 +1,85 @@
 # grAIph Pipeline Overview
 
-This overview describes the public architecture boundary. The implementation remains private; names and stage descriptions are included to explain the design, not to expose source code.
+**Reviewed:** 2026-09-20
+
+This overview describes the public architecture boundary. The implementation remains private; names and phase descriptions explain the design without exposing private source.
 
 ---
 
-## From graph to committed state
+## From shared graph to committed state
 
 ~~~text
-graph and edition face
-        ↓
-topology and mode selection
-        ↓
-context and contract compilation
-        ↓
-candidate pipeline
-        ↓
-validation and conformance
-        ↓
-evidence reconciliation
-        ↓
-host persistence and receipt
-        ↓
-committed graph/file state
+authoritative graph + edition face
+              ↓
+analysis + immutable topology plan
+              ↓
+task plan + generation contract
+              ↓
+minimum capability plan
+              ↓
+code synthesis + normalization
+              ↓
+QA repair + conformance repair
+              ↓
+independent Quality Gate
+              ↓
+graph evidence + reconciliation
+              ↓
+unverified candidate assembly
+              ↓
+host persistence + canonical receipt
+              ↓
+verified committed graph/file state
 ~~~
 
-The pipeline is deliberately longer than a single prompt-to-completion call because generation, validation, evidence, and persistence answer different questions.
+The pipeline is longer than a prompt-to-completion call because planning, generation, validation, repair, graph evidence, persistence, and commit authority answer different questions.
 
 ---
 
-## Default candidate chain
+## Orchestrator and PATH B
 
-The normal decompressed sequential profile is:
+The Orchestrator is the public sequencing facade. It selects the explicit mode, creates run context, delegates the default decompressed PATH B route to a phase executor, and exposes host-finalization seams.
 
-| Stage | Responsibility |
+The phase executor is not an autonomous scheduler. It preserves a typed, bounded order:
+
+| Phase | Responsibility |
 |---|---|
-| TopologyScrutineer | Check graph coherence, cycles, and generation order |
-| PatternSpecialist | Resolve declared architectural patterns and their contracts |
-| TaskDecomposer | Turn the node request into bounded generation tasks |
-| Coder | Produce a candidate implementation |
-| QASquire | Run language-appropriate syntax, compile, or quality checks |
-| Conformance | Check the candidate against graph and structural contracts |
-| QualityGate | Decide whether blocking issues remain and whether repair is allowed |
-| Grapher | Update graph-facing representations and relation evidence |
+| Analysis | Inspect graph coherence, generation order, cycle policy, and topology plan |
+| Task Planning | Resolve patterns and decompose the node request into bounded tasks |
+| Generation Contract | Compile the authoritative task, graph, language, source, and policy brief |
+| Capability Planning | Resolve semantic requirements to a minimum policy-eligible tool surface |
+| Code Synthesis | Produce candidate files and deterministic normalization artifacts |
+| QA Repair | Run language-appropriate checks and bounded candidate repair |
+| Conformance Repair | Compare candidate behavior with graph/structural contracts and repair within bounds |
+| Quality Gate | Decide independently whether blocking findings remain |
+| Grapher | Produce graph-facing relations, surfaces, and evidence |
+| Graph Reconciliation | Apply the accepted topology/evidence mutation to detached state |
+| Candidate Assembly | Bind files, mutations, findings, provenance, and candidate identity |
 
-Host persistence and RecordKeeper follow candidate processing. The model response is not treated as durable success before this boundary.
+Host persistence and Record Keeper follow candidate processing. The phase executor does not grant itself durable graph or workspace authority.
 
-Alternate profiles exist, including lightweight whisper regeneration, compressed opt-in paths, and conditional native orchestration. They are explicit modes rather than assumptions about every run.
+Alternate modes—including whisper regeneration, compressed profiles, Energy Saver, and provider-native orchestration—are explicit paths. Their existence does not mean every stage runs in every mode, and each route must preserve the candidate/commit boundary.
 
 ---
 
-## Context compilation
+## Topology analysis
 
-The context compiler combines multiple kinds of information:
+Topology Scrutineer produces an immutable plan bound to the input graph fingerprint. The plan can contain:
+
+- graph analysis and strongly connected components;
+- deterministic generation waves;
+- edge additions or removals;
+- cycle-repair decisions;
+- layout and adjacency information consumed by later phases;
+- provenance and evidence needed to reject stale reuse.
+
+Planning does not mutate the authoritative graph. One reconciliation executor later applies an accepted plan to detached candidate state.
+
+---
+
+## Generation contract
+
+The generation contract is the authoritative brief for synthesis. It combines:
 
 - target description and edition-face metadata;
 - graph neighbors and dependency direction;
@@ -59,26 +87,45 @@ The context compiler combines multiple kinds of information:
 - binding and structural contracts when enabled;
 - generated files and safe symbol surfaces;
 - language capability information;
-- token and model-budget constraints;
-- source-suppression and benchmark controls.
+- source-access and benchmark policy;
+- token, context, and model constraints;
+- the topology-plan identity.
 
-Direct dependencies can receive richer context than distant nodes. Context can be reduced to bodies, surfaces, symbols, relation/edge information, or identity depending on the selected policy.
-
-A distance-aware attenuation rule is one available policy. It is treated as a configurable hypothesis, not as an empirically settled law.
+The graph can represent a direct dependency as source, symbols, structural surface, relation information, or identity. Which representation is best remains an empirical question.
 
 ---
 
-## Candidate validation
+## Capability planning and leases
 
-The candidate passes through checks appropriate to the selected language and profile:
+Task planning may describe semantic needs, but it does not choose its own authority. After the generation contract exists, a deterministic planner filters the capability catalog through hard policy, compatibility, coverage, and budget.
 
-- structural and syntax checks;
+At an actual model turn, the host materializes an exact effective surface from:
+
+- the plan;
+- current agent and phase;
+- candidate identity;
+- provider/model identity;
+- session and source policy;
+- tool, call, byte, time, and expiry budgets.
+
+Read-only evidence precedes candidate-only mutation. Capability expansion requires a broker-issued lease delta. See [Bounded tool runtime](./tool-runtime.md).
+
+---
+
+## Candidate validation and repair
+
+Checks are appropriate to the selected language and profile:
+
+- structure and syntax;
 - compiler or best-effort language QA;
+- import/path and emission integrity;
 - graph and contract conformance;
-- quality-gate policy;
-- emission/path integrity checks.
+- source-access and benchmark policy;
+- quality-gate rules.
 
-The language boundary is explicit. Unknown languages do not silently inherit TypeScript behavior, and capability is reported per operation.
+Repair operates only on ephemeral candidate state. Before-hash, scope, attempt, progress, repetition, and oscillation checks keep the loop bounded. QA and Conformance produce findings; Quality Gate remains independent and tool-free.
+
+Unknown languages do not silently inherit TypeScript behavior. Capability is graded per operation.
 
 ---
 
@@ -86,44 +133,65 @@ The language boundary is explicit. Unknown languages do not silently inherit Typ
 
 After candidate emission, the pipeline can inspect actual use of neighboring symbols. Evidence may describe calls, construction, injection, references, or imported values consumed as data.
 
-Evidence-derived relations are kept distinct from declared architecture. Import-derived contracts are protected from evidence passes that would overwrite them. Unsupported evidence can be retracted, while a declared contract remains as an architectural request and can be reported as unfulfilled.
+Evidence-derived relations remain distinct from declared architecture. Protected declared or import-derived contracts are not silently overwritten. Unsupported evidence can be retracted while an unfulfilled declared request remains visible.
 
-See [evidence-reconciliation.md](./evidence-reconciliation.md).
+The accepted graph mutation is applied to detached state and bound to graph/topology fingerprints. The host later verifies that persisted state matches the accepted result.
+
+See [Evidence reconciliation](./evidence-reconciliation.md).
 
 ---
 
 ## Candidate versus committed outcome
 
-A candidate has:
+An unverified candidate can contain:
 
-- a candidate identifier;
+- candidate identity;
 - generated files;
-- proposed graph mutations;
-- warnings and errors;
+- proposed graph additions and removals;
+- topology and graph fingerprints;
+- warnings, errors, and finding deltas;
+- tool and provider provenance;
 - benchmark eligibility information.
 
-An outcome becomes committed only when validation passes and host persistence reports committed targets covered by a receipt. Compatibility success signals are derived from that final outcome rather than from the existence of a model response.
+It becomes committed only when:
 
-This distinction is also the basis of the benchmark eligibility gate.
+1. required validation and Quality Gate pass;
+2. the authoritative host accepts and persists it;
+3. a canonical receipt covers the candidate targets;
+4. committed graph/file state is verified against the candidate.
+
+A model response, successful tool call, validation pass, or graph proposal does not cross this boundary alone.
 
 ---
 
-## Provider and host boundary
+## Host and interface boundary
 
-The runtime distinguishes provider identities and host responsibilities. API, CLI/SDK, mock, and VS Code Language Model paths may have different capabilities and must be recorded as such.
+VS Code, browser clients, MCP, and headless execution may have different capabilities, but they must not invent separate authority models.
 
-The host is responsible for durable persistence, receipts, and committed graph/file verification. The core pipeline may return a validated candidate without claiming that the host committed it.
+The host owns:
+
+- workspace and credential authority;
+- durable persistence;
+- effect approval;
+- graph revision and publication;
+- commit receipts;
+- verification of committed graph/file state.
+
+Streaming and runtime events expose progress without replacing this boundary. See [Runtime observability](./runtime-observability.md).
 
 ---
 
 ## What this overview does not establish
 
-This architecture overview does not establish that:
+This architecture does not establish that:
 
 - graph structure always improves generation;
-- the default pipeline outperforms a raw model;
-- any provider is interchangeable with another;
-- every language has the same analysis quality;
-- experimental contracts should be enabled by default.
+- the default pipeline outperforms a raw model or another coding system;
+- a minimum capability surface improves provider quality;
+- every provider or language is interchangeable;
+- candidate repair causes better final code in general workloads;
+- experimental contracts should become defaults;
+- Record Keeper already provides complete process memory;
+- adaptive orchestration or AVO is active.
 
-Those are empirical questions tracked in [CURRENT_STATE.md](../CURRENT_STATE.md), [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md), and [docs/experiment-protocol.md](./experiment-protocol.md).
+Those questions and boundaries are tracked in [Current state](../CURRENT_STATE.md), [Research hypotheses](../RESEARCH_HYPOTHESES.md), and [Experiment protocol](./experiment-protocol.md).
