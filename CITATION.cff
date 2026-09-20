@@ -1,14 +1,15 @@
 cff-version: 1.2.0
 message: "If you use or discuss this work, please cite the repository and the version you consulted."
 type: software
-title: "grAIph: Graph-Structured Infrastructure for LLM Software Generation"
+title: "grAIph: A Graph-First Visual Environment for Bounded Agentic Development"
 abstract: >
-  grAIph is a research system for representing software-generation architecture
-  as an explicit graph. The graph is compiled into topological generation order,
-  context representations, contracts, validation stages, and evidence-aware
-  reconciliation. The public repository documents the architecture, hypotheses,
-  benchmark protocol, and current evidence boundaries; the implementation remains
-  private while the system is being hardened.
+  grAIph is a research system for representing software architecture as explicit,
+  shared graph state. The graph drives visualization, topological context
+  compilation, bounded capability selection, candidate generation, validation,
+  evidence reconciliation, and host-controlled commit. The public repository
+  documents the architecture, hypotheses, benchmark protocol, bounded evidence,
+  and current claim boundaries; the implementation remains private while the
+  system is being hardened.
 authors:
   - family-names: "Rendon Suarez"
     given-names: "Mateo"
@@ -17,14 +18,17 @@ authors:
 repository-code: https://github.com/mateors1/grAIph
 url: https://graiph.dev
 license: Apache-2.0
-version: 0.2.0-research-preview
-date-released: "2026-08-13"
+version: 0.3.0-research-preview
+date-released: "2026-09-20"
 keywords:
   - llm
+  - agentic-development
   - code-generation
   - software-architecture
+  - visual-programming
   - graph
   - compiler
   - context-compilation
   - benchmark-methodology
+  - mcp
   - vscode
