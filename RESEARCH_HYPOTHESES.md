@@ -1,6 +1,6 @@
 # grAIph — Research Hypotheses
 
-**Last reviewed:** 2026-09-20
+**Last reviewed:** 2026-11-04
 
 This document records testable hypotheses and their current evidence status. It is not a publication map, novelty declaration, venue plan, or benchmark leaderboard.
 
@@ -136,15 +136,15 @@ The existence of a mechanism is not evidence that it improves outcomes. Determin
 
 ## H9 — Durable process memory and adaptive revision
 
-**Mechanism:** Runtime events, invocation records, candidates, receipts, finding deltas, and graph fingerprints can form evidence inputs for future Record Keeper process memory.
+**Mechanism:** Durable attempt records can retain rejected candidates, raw evaluator reports, and lineage into later repairs. An opt-in controller can select bounded actions against current host state using a trusted independent evaluator. Full Record Keeper process memory remains incomplete.
 
 **Question:** Can durable attempt lineage improve later orchestration or topology revision without turning observation into self-authorizing control?
 
-**Test:** After a durable Record Keeper implementation exists, compare evidence-informed replay/selection with stateless execution. Require explicit provenance, bounded changes, deterministic evaluation, and a fixed control mode.
+**Test:** Compare the implemented attempt-memory and controlled-selection paths with stateless deterministic execution on fresh tasks. Pin evaluators, include all selector/diagnosis/repair costs and failed cells, require fresh evaluation for changed candidates, and keep a fixed control. Evaluate broader process-memory claims separately as those capabilities are implemented.
 
 **Falsifier:** Retrieved history causes recurrence, stale strategy reuse, hidden authority expansion, or no improvement over a stateless control.
 
-**Status:** Planned research. Full process memory, adaptive orchestration, and AVO-style control are not active capabilities.
+**Status:** Bounded attempt retrieval, advisory diagnosis, and opt-in controlled adaptation are implemented. Deterministic memory-repair fixtures establish lifecycle behavior. The invalidation pilot retained its control, and two small diagnostic-repair campaigns did not justify default promotion. General quality/efficiency benefit, full process memory, and autonomous harness evolution remain open. See [November progress](./docs/progress-2026-11.md).
 
 ---
 
@@ -155,6 +155,9 @@ The existence of a mechanism is not evidence that it improves outcomes. Determin
 | Relation-surface provider experiment | No conclusion yet; eligible A/B pending |
 | Visual-host evidence | Bounded synchronization correctness and observed responsiveness |
 | Candidate-tool program | Bounded functional and safety behavior |
+| Controlled adaptation and memory | Bounded lifecycle/repair plumbing; comparative benefit unproven |
+| Diagnostic-repair comparisons | Small exposed development results that do not justify default promotion |
+| Native project QA and settings | Workflow/host checks within their pinned scope, not general release qualification |
 
 No track promotes another. In particular, deterministic tool results do not satisfy H1/H2, and visual convergence does not establish a generation-quality benefit.
 
@@ -171,6 +174,6 @@ These hypotheses do not establish:
 - that any experimental mechanism should be enabled by default;
 - that deterministic functional evidence is provider-quality evidence;
 - that historical byte-identical scores are valid current evidence;
-- that process memory, adaptive orchestration, or AVO is already implemented.
+- that bounded attempt memory is full process memory, adaptation is the default, or autonomous harness evolution is implemented.
 
 The July correction and active eligibility rules are documented in [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) and [archive/2026-07-17-benchmark-correction.md](./archive/2026-07-17-benchmark-correction.md).

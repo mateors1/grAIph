@@ -2,7 +2,7 @@
 
 **Status:** Implemented and verified locally with limitations
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-04
 
 The graph visualization is a core product surface, not a disposable rendering of hidden state. The development implementation allows one shared UI to attach through the native VS Code host or an authenticated local browser host, including the Codex browser surface.
 
@@ -79,7 +79,7 @@ Supported viewer classes are:
 
 For committed graph commands, the intended invariant is convergence on the same runtime identity, revision, document hash, and committed snapshot. That creates a twelve-cell origin/viewer matrix.
 
-The latest exact-build public evidence covers one origin—Codex browser—observed in all three viewers. Earlier functional fixtures and historical live checks are retained separately; they are not silently promoted into a final-build performance claim.
+The retained September exact-build performance evidence covers one origin—Codex browser—observed in all three viewers. Earlier functional fixtures and historical live checks are retained separately; they are not silently promoted into a final-build performance claim.
 
 ---
 
@@ -130,9 +130,15 @@ Progress and token streams may be shared across viewers, but they remain observa
 
 ---
 
-## Current evidence
+## Persistent settings and later host evidence
 
-The latest reviewed exact-build run performed 35 actual Codex-browser Add Node actions on a graph growing from 500 to 535 nodes while native VS Code and standalone Chrome were attached.
+The shared settings panel now persists generation policies and feature controls through trusted host settings routes. Save/cancel behavior, safe browser projections, and native-only permissions remain distinct. Enabling controlled adaptive commands does not change ordinary Generate into an adaptive run.
+
+A November 1–2 isolated installed-extension check verified settings persistence, command gates, and a full exit/cold reopen. It added no model calls and does not replace the visual performance evidence below. See [November progress](./progress-2026-11.md).
+
+## Retained September performance evidence
+
+The September 2026 exact-build run performed 35 actual Codex-browser Add Node actions on a graph growing from 500 to 535 nodes while native VS Code and standalone Chrome were attached.
 
 All 35 observations matched:
 
@@ -159,7 +165,7 @@ The measurements include persistence and renderer layout. They are not pure netw
 
 ## Limitations and open qualification
 
-- Only one mutation origin was measured in the latest exact-build run.
+- Only one mutation origin was measured in the retained September exact-build run.
 - The graph grew during measurement; this is not a fixed-size comparison.
 - No live provider generation was used.
 - All three p95 results fail the unchanged 250 ms target.
@@ -167,4 +173,4 @@ The measurements include persistence and renderer layout. They are not pure netw
 - Steady-state memory, a long soak, and production deployment evidence remain open.
 - Correct synchronization does not imply acceptable interaction latency.
 
-See [Current state](../CURRENT_STATE.md) and [September 2026 progress](./progress-2026-09.md).
+No newer passing visual-performance result was established by the November review. See [Current state](../CURRENT_STATE.md), [November progress](./progress-2026-11.md), and the historical [September progress](./progress-2026-09.md).
