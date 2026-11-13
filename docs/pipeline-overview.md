@@ -1,6 +1,6 @@
 # grAIph Pipeline Overview
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-13
 
 This overview describes the public architecture boundary. The implementation remains private; names and phase descriptions explain the design without exposing private source.
 
@@ -61,6 +61,24 @@ Host persistence and Record Keeper follow candidate processing. The phase execut
 Alternate modes—including whisper regeneration, compressed profiles, Energy Saver, and provider-native orchestration—are explicit paths. Their existence does not mean every stage runs in every mode, and each route must preserve the candidate/commit boundary.
 
 ---
+
+## Preflight, timing, and grouped scheduling
+
+Saved-graph admission can reconcile source-bound imports/dependencies and validate API/port contracts for supported JavaScript/TypeScript paths. Explicit graph repair revalidates detached changes before host commit. Behavioral graph review is a separate opt-in and must distinguish attributed conflict from unavailable evidence.
+
+Project-file scaffolding and validation-environment preparation have separate ownership. Captured dependency contracts can prepare isolated Node QA environments with scaffolding off. Missing or stale environment receipts remain unavailable evidence rather than candidate syntax findings. See [Saved-graph regeneration](./saved-graph-regeneration.md).
+
+One node invocation ledger spans provider work across stages and repair. Call/token reservations remain charged when usage is unknown. The default Michelangelo timing mode permits completion or cancellation without the ordinary generation deadline; bounded timing and explicit duration contracts enforce deadlines. Controlled adaptive runs have separate fixed limits.
+
+Batch scheduling groups strongly connected components for joint validation and host acceptance. Final group compiler errors can return to owned retained candidates within the original invocation budget and attempt limit. Repair revisits normalization, Conformance, and validation; the whole group must compile before acceptance. Missing evidence and non-compiler gates remain rejections.
+
+Downstream groups proceed only after dependency groups are accepted. Group failure blocks dependents; uncertain effects require recovery. This logical transaction does not claim physical crash-atomicity across storage systems.
+
+## Explicit controlled adaptation
+
+An opt-in controller can choose bounded generation, retry, evaluation, and replanning actions using current host state and a registered independent evaluator. Its durable policy and budgets constrain dispatch, while the same host acceptance boundary remains mandatory. Ordinary Generate remains deterministic. Provider-native orchestration is a separate mode.
+
+Native project QA can route independently observed project failures through this controlled repair path. Project qualification also requires integration and cold-reopen evidence. See [Controlled adaptation and project QA](./controlled-adaptation.md).
 
 ## Topology analysis
 
@@ -192,6 +210,7 @@ This architecture does not establish that:
 - candidate repair causes better final code in general workloads;
 - experimental contracts should become defaults;
 - Record Keeper already provides complete process memory;
-- adaptive orchestration or AVO is active.
+- controlled adaptation or memory-guided repair outperforms deterministic generation;
+- autonomous harness evolution is active.
 
 Those questions and boundaries are tracked in [Current state](../CURRENT_STATE.md), [Research hypotheses](../RESEARCH_HYPOTHESES.md), and [Experiment protocol](./experiment-protocol.md).

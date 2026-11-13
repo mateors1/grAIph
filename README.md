@@ -10,7 +10,9 @@ The development implementation represents generation units, dependencies, interf
 
 The same project representation can be attached to by the native VS Code surface, an authenticated local browser surface, and MCP-aware operators. Local viewer state remains local, while committed graph changes converge through one revisioned runtime.
 
-**Current status:** the architecture is implemented and actively evolving in a private development workspace. Host-independent visualization, embodied MCP, provider-neutral observation, topology reconciliation, and bounded candidate tooling have local or bounded functional evidence. Release qualification remains incomplete, the current visual responsiveness target is not met, and the provider-backed relation-surface A/B is still pending. grAIph is not making a benchmark-superiority claim.
+**Current status — November 13, 2026:** saved-graph dependency/API validation, independent Node QA environments, final-group compiler feedback into bounded repair, emitted-script syntax checks, and relationship wire colors are now committed in the private development workspace. They extend the opt-in adaptive controller, attempt history, project QA, and persistent settings. Ordinary generation remains deterministic. Scoped checks passed; broader validation still has unresolved failures under active remediation. Release qualification, the visual responsiveness gate, and the provider-backed relation-surface A/B remain open. grAIph is not making a benchmark-superiority claim.
+
+See [November progress and limitations](./docs/progress-2026-11.md) for the new implementation, measured results, and work still in progress.
 
 ---
 
@@ -90,6 +92,20 @@ The default PATH B route is implemented as typed phases:
 
 The Orchestrator remains the public sequencing facade. A model response, tool result, validation pass, or graph proposal is not by itself a committed generation. See [Pipeline overview](./docs/pipeline-overview.md).
 
+### Controlled adaptation and project QA
+
+An explicitly enabled controller can select bounded generation, retry, evaluation, and replanning actions against current host state. A trusted independent evaluator, durable budgets, and host-controlled acceptance constrain execution. Recoverable attempt history retains rejected candidates and reports for later repair. Ordinary Generate remains deterministic; full process memory and autonomous harness evolution remain incomplete.
+
+Native project QA separately assesses current project readiness, attributes findings to generation owners, validates repairs, and requires integration and cold-reopen evidence for qualification. See [Controlled adaptation and project QA](./docs/controlled-adaptation.md).
+
+### Project recreation and generation controls
+
+Imports can preserve observed behavior or explicitly record requirements for minimally corrected source defects. Project configuration, passive assets, and discovered entry points can be restored while application implementations remain generation targets. Corrected-behavior runs are distinct from exact-recreation benchmarks.
+
+Saved graphs can carry source-bound dependency/API evidence and portable dependency requirements into regeneration. Node validation environments can be prepared with project-file scaffolding off. Final group compiler errors can return to bounded repair while preserving the original invocation budget and requiring whole-group validation before commit. See [Saved-graph regeneration](./docs/saved-graph-regeneration.md).
+
+Batch scheduling validates cyclic dependency groups before downstream work. Shared call/token accounting spans generation and repair; timing is separately selected. Optional graph freeze preserves declarations during generation while generated files and status advance.
+
 ### Bounded candidate tools
 
 Tool execution uses a common policy boundary across supported routes. Semantic capability requirements are resolved against a catalog and materialized as exact, phase-bound leases. Read-only evidence tools arrive before candidate-only mutation tools; capability expansion is broker-controlled and cannot grant itself host authority.
@@ -112,7 +128,7 @@ This graph transaction is separate from visual node placement. See [Evidence rec
 
 ## Current evidence boundary
 
-The latest reviewed visual-host run performed 35 actual Codex-browser-origin Add Node edits on a graph growing from 500 to 535 nodes, with native VS Code and standalone Chrome attached concurrently. Every observation matched the durable revision, document hash, receipt, and all three viewer layouts.
+The September 2026 visual-host run performed 35 actual Codex-browser-origin Add Node edits on a graph growing from 500 to 535 nodes, with native VS Code and standalone Chrome attached concurrently. Every observation matched the durable revision, document hash, receipt, and all three viewer layouts.
 
 That run does **not** establish release readiness:
 
@@ -123,7 +139,9 @@ That run does **not** establish release readiness:
 
 The completed minimum-tool-surface program also has bounded functional evidence, including deterministic contract reduction, candidate-repair progress, and uncommon brokered expansion. Those results are not a provider-quality or production-frequency claim.
 
-See [September 2026 progress and limitations](./docs/progress-2026-09.md) and the maintained [current claim boundary](./CURRENT_STATE.md).
+A later six-case diagnostic-repair comparison passed every case in all three arms. Clarified diagnostic guidance used 2.099 times the direct-repair token total, with no paired repair wins. This is exposed development evidence, not a repeated holdout or full project-generation study.
+
+See [November progress and limitations](./docs/progress-2026-11.md), the historical [September evidence](./docs/progress-2026-09.md), and the maintained [current claim boundary](./CURRENT_STATE.md).
 
 ---
 
@@ -157,6 +175,11 @@ See [Benchmark specification v2](./BENCHMARK_SPEC.md), [Research hypotheses](./R
 - Immutable topology plans and transactional graph reconciliation
 - Unified tool-execution policy and durable invocation lifecycle
 - Semantic capability planning, exact leases, candidate-only repair, and brokered expansion
+- Controlled adaptive-run lifecycle with independent evaluation and explicit opt-in
+- Recoverable rejected-candidate and evaluation lineage
+- Native project-QA workflow with separate integration/reopen qualification
+- Dependency-group scheduling, shared generation accounting, and persistent settings
+- Source-bound saved-graph validation, independent Node QA environments, and bounded group compiler-feedback routing
 - Benchmark manifests, provenance controls, and prompt-leak auditing machinery
 - Deterministic topology-derived layout implementation
 
@@ -168,15 +191,16 @@ Some properties are verified locally or through bounded functional evidence rath
 - Structural contracts under source suppression
 - Evidence rewiring and contract retraction
 - Alternative graph-informed context representations
+- Controlled adaptive selection, advisory diagnosis, and memory-guided repair as quality or efficiency improvements
 - Active minimum-capability surfaces as a provider-quality intervention
 - Candidate repair and capability expansion as quality improvements
 - Topology-derived visual placement as a generation intervention
 
 ### Planned or deliberately deferred
 
-- Durable Record Keeper consumption as full process memory
-- Adaptive orchestration driven by accumulated evidence
-- External AVO-style observe → attribute → replay → evaluate loops
+- Full Record Keeper process memory beyond implemented attempt lineage
+- Autonomous harness evolution and automatic policy promotion
+- Broad evidence-informed strategy selection with demonstrated comparative benefit
 - Confined multi-tool program execution
 - Automatic topology revision without explicit evidence and host authority
 
@@ -213,7 +237,10 @@ The active protocol requires run provenance, explicit eligibility, source-leak a
 - [docs/tool-runtime.md](./docs/tool-runtime.md) — capability planning, leases, and candidate tools
 - [docs/runtime-observability.md](./docs/runtime-observability.md) — streaming and bounded runtime events
 - [docs/evidence-reconciliation.md](./docs/evidence-reconciliation.md) — declared architecture and implementation evidence
-- [docs/progress-2026-09.md](./docs/progress-2026-09.md) — bounded evidence and limitations
+- [docs/progress-2026-11.md](./docs/progress-2026-11.md) — latest developments, comparisons, and limitations
+- [docs/controlled-adaptation.md](./docs/controlled-adaptation.md) — opt-in controller, attempt memory, and project QA
+- [docs/saved-graph-regeneration.md](./docs/saved-graph-regeneration.md) — graph admission, dependency environments, and compiler repair
+- [docs/progress-2026-09.md](./docs/progress-2026-09.md) — historical visual and candidate-tool evidence
 - [docs/tcc-primer.md](./docs/tcc-primer.md) — Topological Context Compilation primer
 - [TOPOLOGY_LAYOUT.md](./TOPOLOGY_LAYOUT.md) — deterministic visual placement
 - [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) — active benchmark protocol

@@ -2,7 +2,7 @@
 
 **Status:** Implemented with bounded functional evidence
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-04
 
 grAIph treats tool use as an authority and evidence problem, not merely a list of functions attached to a prompt.
 
@@ -141,6 +141,6 @@ The program completed under amended functional criteria. It does not claim provi
 
 Confined composition—one capability that executes an internally bounded multi-tool program—was deliberately excluded. Individual leases, candidate-only mutation, and broker-controlled expansion must remain independently understandable before a later program could evaluate composition.
 
-Durable process memory and adaptive orchestration are also separate concerns. Invocation records and runtime events provide evidence substrates, but Record Keeper does not yet consume them as complete long-horizon process memory.
+Controlled adaptive orchestration is now implemented as a separate explicit opt-in with a registered independent evaluator, durable budgets, and host-controlled acceptance. It does not enlarge candidate tool leases or turn ordinary Generate into an adaptive run. Bounded attempt memory retains rejected candidates and evaluation lineage; full Record Keeper long-horizon process memory remains incomplete. See [Controlled adaptation and project QA](./controlled-adaptation.md).
 
 See [Runtime observability](./runtime-observability.md), [Pipeline overview](./pipeline-overview.md), and [Current state](../CURRENT_STATE.md).

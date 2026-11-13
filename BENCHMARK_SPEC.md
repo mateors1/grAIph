@@ -6,7 +6,7 @@
 
 **Current result status:** No current provider-backed release conclusion
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-13
 
 This specification defines how the current experimental generation mechanisms should be evaluated. It is a protocol, not a leaderboard and not a claim that any arm is better.
 
@@ -31,8 +31,11 @@ Other evidence programs—such as host-independent visual synchronization and ca
 | Relation surfaces and bindings | Do explicit graph contracts change provider-backed generation behavior? | Eligible A/B pending |
 | Visual runtime | Do origins and viewers converge on one authoritative graph, and at what responsiveness cost? | Bounded correctness evidence; release qualification blocked |
 | Candidate tools | Do minimum surfaces, candidate repair, and brokered expansion behave safely and improve provider outcomes? | Bounded functional evidence; provider-quality effect open |
+| Controlled adaptation and memory | Do evidence-informed selection and repair improve quality or total work? | Bounded implementation/fixtures; general benefit unproven |
+| Diagnostic-repair comparisons | Does advisory guidance improve repairs over direct repair? | Small development campaigns completed; no default promotion justified |
+| Project QA and settings | Do trusted checks, repairs, settings, and reopen evidence retain their identities? | Scoped local/installed-host evidence; no general release conclusion |
 
-An implementation or result in one track does not promote another. A public statement must identify its track, evidence type, and limitations.
+An implementation or result in one track does not promote another. A public statement must identify its track, evidence type, and limitations. The diagnostic-repair campaigns summarized in [November progress](./docs/progress-2026-11.md) are separate protocols, not executions of this relation-surface specification. This review does not rewrite their frozen rules or results.
 
 ---
 
@@ -46,7 +49,7 @@ All arms begin from the same pinned source revision. Record the source commit ha
 
 Each arm independently imports or builds a fresh graph. Do not toggle treatment flags on a graph created under another arm.
 
-The graph's effective flags, source mode, contracts, capability surface, and graph hash are part of provenance.
+The graph's effective flags, source mode, contracts, capability surface, and graph hash are part of provenance. The newer saved-graph validation/repair and dependency-environment paths must preserve this rule: record their contract/evidence identities, capture any graph changes before sealing the run, and audit source access. A repaired historical graph does not substitute for a fresh graph per arm.
 
 ### Same generation conditions
 
@@ -93,7 +96,7 @@ The default research-preview comparison is:
 
 The baseline and treatment rows are the only intended relation-surface differences. If another setting changes, record it as a separate arm.
 
-Active capability planning, candidate tools, repair policy, or expansion policy must be identical between arms or explicitly disabled. They are not permitted undeclared co-treatments.
+Active capability planning, candidate tools, repair policy, or expansion policy must be identical between arms or explicitly disabled. The same existing co-treatment rule applies to the newer controlled adaptive path, timing/budget policy, graph freeze, scaffold preparation, and import recreation policy. Source-defect correction must be declared separately from faithful recreation. These controls are not permitted undeclared co-treatments.
 
 ---
 
