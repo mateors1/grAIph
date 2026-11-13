@@ -54,6 +54,7 @@ Search existing issues and read the maintained boundaries:
 - [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md)
 - [docs/progress-2026-11.md](../docs/progress-2026-11.md)
 - [docs/controlled-adaptation.md](../docs/controlled-adaptation.md)
+- [docs/saved-graph-regeneration.md](../docs/saved-graph-regeneration.md)
 
 For a benchmark concern, include the protocol version, evidence track, exact claim, and evidence or reproduction that motivates it.
 

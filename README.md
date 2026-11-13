@@ -10,7 +10,7 @@ The development implementation represents generation units, dependencies, interf
 
 The same project representation can be attached to by the native VS Code surface, an authenticated local browser surface, and MCP-aware operators. Local viewer state remains local, while committed graph changes converge through one revisioned runtime.
 
-**Current status — November 4, 2026:** the private development implementation now includes an opt-in adaptive controller, recoverable attempt history, grouped generation for cyclic dependencies, native project QA, project recreation, and persistent settings. Ordinary generation remains deterministic. Evidence includes local fixtures, a bounded installed-settings check, and small diagnostic-repair comparisons; those comparisons do not justify promoting diagnostic guidance as a default. Release qualification remains incomplete, the visual responsiveness target has no newer passing result, and the provider-backed relation-surface A/B is still pending. grAIph is not making a benchmark-superiority claim.
+**Current status — November 13, 2026:** saved-graph dependency/API validation, independent Node QA environments, final-group compiler feedback into bounded repair, emitted-script syntax checks, and relationship wire colors are now committed in the private development workspace. They extend the opt-in adaptive controller, attempt history, project QA, and persistent settings. Ordinary generation remains deterministic. Scoped checks passed; broader validation still has unresolved failures under active remediation. Release qualification, the visual responsiveness gate, and the provider-backed relation-surface A/B remain open. grAIph is not making a benchmark-superiority claim.
 
 See [November progress and limitations](./docs/progress-2026-11.md) for the new implementation, measured results, and work still in progress.
 
@@ -102,7 +102,9 @@ Native project QA separately assesses current project readiness, attributes find
 
 Imports can preserve observed behavior or explicitly record requirements for minimally corrected source defects. Project configuration, passive assets, and discovered entry points can be restored while application implementations remain generation targets. Corrected-behavior runs are distinct from exact-recreation benchmarks.
 
-Batch scheduling can validate cyclic dependency groups before admitting downstream work. Shared call/token accounting spans generation and repair; timing is separately selected. Optional graph freeze preserves declarations during generation while allowing generated files and status to advance. See [November progress](./docs/progress-2026-11.md).
+Saved graphs can carry source-bound dependency/API evidence and portable dependency requirements into regeneration. Node validation environments can be prepared with project-file scaffolding off. Final group compiler errors can return to bounded repair while preserving the original invocation budget and requiring whole-group validation before commit. See [Saved-graph regeneration](./docs/saved-graph-regeneration.md).
+
+Batch scheduling validates cyclic dependency groups before downstream work. Shared call/token accounting spans generation and repair; timing is separately selected. Optional graph freeze preserves declarations during generation while generated files and status advance.
 
 ### Bounded candidate tools
 
@@ -177,6 +179,7 @@ See [Benchmark specification v2](./BENCHMARK_SPEC.md), [Research hypotheses](./R
 - Recoverable rejected-candidate and evaluation lineage
 - Native project-QA workflow with separate integration/reopen qualification
 - Dependency-group scheduling, shared generation accounting, and persistent settings
+- Source-bound saved-graph validation, independent Node QA environments, and bounded group compiler-feedback routing
 - Benchmark manifests, provenance controls, and prompt-leak auditing machinery
 - Deterministic topology-derived layout implementation
 
@@ -236,6 +239,7 @@ The active protocol requires run provenance, explicit eligibility, source-leak a
 - [docs/evidence-reconciliation.md](./docs/evidence-reconciliation.md) — declared architecture and implementation evidence
 - [docs/progress-2026-11.md](./docs/progress-2026-11.md) — latest developments, comparisons, and limitations
 - [docs/controlled-adaptation.md](./docs/controlled-adaptation.md) — opt-in controller, attempt memory, and project QA
+- [docs/saved-graph-regeneration.md](./docs/saved-graph-regeneration.md) — graph admission, dependency environments, and compiler repair
 - [docs/progress-2026-09.md](./docs/progress-2026-09.md) — historical visual and candidate-tool evidence
 - [docs/tcc-primer.md](./docs/tcc-primer.md) — Topological Context Compilation primer
 - [TOPOLOGY_LAYOUT.md](./TOPOLOGY_LAYOUT.md) — deterministic visual placement

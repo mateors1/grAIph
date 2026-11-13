@@ -2,7 +2,7 @@
 
 **Status:** Implemented and verified locally with limitations
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-13
 
 The graph visualization is a core product surface, not a disposable rendering of hidden state. The development implementation allows one shared UI to attach through the native VS Code host or an authenticated local browser host, including the Codex browser surface.
 
@@ -134,7 +134,9 @@ Progress and token streams may be shared across viewers, but they remain observa
 
 The shared settings panel now persists generation policies and feature controls through trusted host settings routes. Save/cancel behavior, safe browser projections, and native-only permissions remain distinct. Enabling controlled adaptive commands does not change ordinary Generate into an adaptive run.
 
-A November 1–2 isolated installed-extension check verified settings persistence, command gates, and a full exit/cold reopen. It added no model calls and does not replace the visual performance evidence below. See [November progress](./progress-2026-11.md).
+A November 1–2 isolated installed-extension check verified settings persistence, command gates, and a full exit/cold reopen. It added no model calls and does not replace the visual performance evidence below.
+
+The local November 13 implementation also includes uniform or relationship wire colors/styles and collapsed-edge classification. This viewer-local presentation does not change durable dependency or host authority. Scoped UI coverage does not establish a new responsiveness result or installed-build qualification. See [November progress](./progress-2026-11.md).
 
 ## Retained September performance evidence
 

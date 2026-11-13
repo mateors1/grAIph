@@ -6,7 +6,7 @@
 
 **Current result status:** No current provider-backed release conclusion
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-13
 
 This specification defines how the current experimental generation mechanisms should be evaluated. It is a protocol, not a leaderboard and not a claim that any arm is better.
 
@@ -49,7 +49,7 @@ All arms begin from the same pinned source revision. Record the source commit ha
 
 Each arm independently imports or builds a fresh graph. Do not toggle treatment flags on a graph created under another arm.
 
-The graph's effective flags, source mode, contracts, capability surface, and graph hash are part of provenance.
+The graph's effective flags, source mode, contracts, capability surface, and graph hash are part of provenance. The newer saved-graph validation/repair and dependency-environment paths must preserve this rule: record their contract/evidence identities, capture any graph changes before sealing the run, and audit source access. A repaired historical graph does not substitute for a fresh graph per arm.
 
 ### Same generation conditions
 

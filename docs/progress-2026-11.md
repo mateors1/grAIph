@@ -1,10 +1,10 @@
 # November 2026 Progress and Limitations
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-13
 
 Since the September public preview, grAIph has added controlled adaptive execution, native project QA, grouped generation for cyclic dependencies, persistent settings, and richer project recreation. The deterministic generation route remains the default.
 
-This update summarizes implementation and retained evidence from the private development workspace through November 2. Later working-tree changes are identified separately below. Raw development artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
+This update covers the local November 13 development checkpoint, including work previously uncommitted at the November 4 review. Active remediation is identified separately. Raw artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
 
 ---
 
@@ -78,15 +78,28 @@ These were exposed development cases, not repeated holdout studies or full proje
 
 A separate deterministic invalidation pilot also retained its control: eager propagation evaluated excess nodes, while observed-contract seeding incurred additional evaluator calls without improving the frozen objective.
 
-## Work in progress after the reviewed implementation
+## November 13: saved-graph regeneration checkpoint
 
-The November 4 working tree includes source-backed graph dependency/API-port reconciliation, an explicit graph-repair flow, further contract/conformance review changes, emitted-HTML syntax checks, and edge presentation controls. These changes are still uncommitted development work in the reviewed workspace. They are not included in the installed-build evidence above or claimed as a qualified release.
+The previously pending graph and presentation work is now committed locally. The checkpoint adds source-bound dependency/API validation and bounded graph repair, portable dependency contracts with independent Node QA environments, final-group compiler feedback into repair, static emitted-script syntax checks, and relationship wire colors/styles. Model-based behavioral graph review is optional; deterministic admission remains separate.
+
+Validation environments can be prepared from saved metadata with project-file scaffolding off. Missing or stale environments remain unavailable evidence; they are not repaired by guessing changes to application code. Local/workspace dependencies, non-Node environments, and native integration still need additional coverage.
+
+Final native/headless group compilation now routes owned compiler findings to retained candidates within their original budgets. A saved-graph replay rejected with zero commits when repair was disabled and committed one revision after repair, Conformance, and whole-group compilation when enabled. Initial generation, the repair response, and model Conformance were scripted; compiler, prompt construction, source admission, parsing, environment, and transaction code executed with a test filesystem adapter. This establishes routing, not fresh-model repair success.
+
+A later uncommitted follow-up also checked that the complete diagnostics and rejected code reached the repair-provider request. It remains separate from the committed checkpoint.
+
+A saved-graph application campaign completed its declared file set over multiple native batches. Rejected compiler samples, retries, usage, and remaining differential gaps were retained. It was a corrected-source/non-clean arm with unmeasured native packaging/hardware behavior, not an eligible clean leaderboard result or an isolated model comparison.
+
+Builds, production typechecks, and selected regressions passed at the checkpoint. Broad-suite and recursive-test checks did not pass. Some failures reproduce on an earlier baseline, but others remain unresolved; they cannot all be called pre-existing. Follow-up production/test changes and skip review are active and uncommitted. Release qualification remains open.
+
+See [Saved-graph validation and regeneration](./saved-graph-regeneration.md) for the mechanisms and scoped evidence.
 
 ## Gates that remain open
 
 - The fresh relation-surface/binding-contract provider A/B, with separately attributed structural contracts and at least five repetitions per arm, remains pending.
 - The September one-origin/three-viewer synchronization measurements remain historical evidence. No newer complete all-origin performance matrix or passing 250 ms responsiveness result was established by this review.
 - Full process memory, autonomous harness evolution, and general provider-quality or cost superiority remain unproven.
+- Broad-suite and recursive-test failures remain unresolved while remediation is active.
 - Local fixtures, an isolated installed-host check, and small development comparisons do not establish production readiness or cross-platform qualification.
 
 The governing boundary is [Current state](../CURRENT_STATE.md). Historical September evidence remains in [its original progress note](./progress-2026-09.md); the July benchmark correction remains unchanged.

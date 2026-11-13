@@ -2,7 +2,7 @@
 
 **Status:** Pending fresh provider-backed execution
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-13
 
 This is the operational summary for the current relation-surface, binding-contract, and structural-contract A/B. The root [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md) is the governing protocol.
 
@@ -37,7 +37,7 @@ Start with the same pinned source revision and build a fresh graph independently
 | nearNeighborSourceMode | self-generated | self-generated |
 | nearNeighborContextMode | edges | edges |
 
-If more than one experimental lever changes, record it as a separate arm. Active candidate-tool or adaptive behavior must remain identical across arms or be disabled; it must not become an undeclared co-treatment. Record timing/budgets, graph-freeze policy, scaffold preparation, and faithful-versus-corrected import policy under the same rule. A corrected-behavior recreation is not an exact-behavior baseline.
+If more than one experimental lever changes, record it as a separate arm. Active candidate-tool or adaptive behavior must remain identical across arms or be disabled; it must not become an undeclared co-treatment. Record timing/budgets, graph-freeze policy, scaffold preparation, and faithful-versus-corrected import policy under the same rule. A corrected-behavior recreation is not an exact-behavior baseline. Record saved-graph validation/repair and dependency-environment identities before sealing each run; those paths do not waive fresh-graph or source-leak controls.
 
 ---
 

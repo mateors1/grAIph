@@ -1,6 +1,6 @@
 # grAIph Pipeline Overview
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-13
 
 This overview describes the public architecture boundary. The implementation remains private; names and phase descriptions explain the design without exposing private source.
 
@@ -64,11 +64,15 @@ Alternate modes—including whisper regeneration, compressed profiles, Energy Sa
 
 ## Preflight, timing, and grouped scheduling
 
-Project preparation, dependency setup, and early contract consistency checks precede synthesis where applicable. Behavioral conflict review must cite existing requirements and distinguish conflict from unavailable evidence. It cannot prove semantics merely by supplying citations.
+Saved-graph admission can reconcile source-bound imports/dependencies and validate API/port contracts for supported JavaScript/TypeScript paths. Explicit graph repair revalidates detached changes before host commit. Behavioral graph review is a separate opt-in and must distinguish attributed conflict from unavailable evidence.
+
+Project-file scaffolding and validation-environment preparation have separate ownership. Captured dependency contracts can prepare isolated Node QA environments with scaffolding off. Missing or stale environment receipts remain unavailable evidence rather than candidate syntax findings. See [Saved-graph regeneration](./saved-graph-regeneration.md).
 
 One node invocation ledger spans provider work across stages and repair. Call/token reservations remain charged when usage is unknown. The default Michelangelo timing mode permits completion or cancellation without the ordinary generation deadline; bounded timing and explicit duration contracts enforce deadlines. Controlled adaptive runs have separate fixed limits.
 
-Batch scheduling groups strongly connected components for joint validation and host acceptance. Downstream groups proceed only after dependency groups are accepted. Group failure blocks dependents; uncertain effects require recovery. This logical transaction does not claim physical crash-atomicity across storage systems.
+Batch scheduling groups strongly connected components for joint validation and host acceptance. Final group compiler errors can return to owned retained candidates within the original invocation budget and attempt limit. Repair revisits normalization, Conformance, and validation; the whole group must compile before acceptance. Missing evidence and non-compiler gates remain rejections.
+
+Downstream groups proceed only after dependency groups are accepted. Group failure blocks dependents; uncertain effects require recovery. This logical transaction does not claim physical crash-atomicity across storage systems.
 
 ## Explicit controlled adaptation
 

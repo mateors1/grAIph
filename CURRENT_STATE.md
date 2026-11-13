@@ -1,12 +1,12 @@
 # grAIph — Current State
 
-**Last reviewed:** 2026-11-04
+**Last reviewed:** 2026-11-13
 
 This document is the canonical public claim boundary for grAIph. It distinguishes implementation properties, bounded evidence, experimental mechanisms, current blockers, planned work, and claims the project explicitly does not make.
 
 When another public document is less precise, use this document as the more conservative description.
 
-The November review covers committed development through November 2 and separately identifies later working-tree changes. Historical visual measurements retain their original scope. See [November progress and limitations](./docs/progress-2026-11.md).
+This review covers the local November 13 implementation checkpoint and separates it from active uncommitted remediation. Scoped verification passed, but broad-suite and recursive-test checks remain unresolved. Historical visual measurements retain their original scope. See [November progress and limitations](./docs/progress-2026-11.md).
 
 ---
 
@@ -135,7 +135,17 @@ Batch scheduling groups cyclic dependencies for joint validation and host accept
 
 One invocation ledger accounts for calls and tokens across planning, coding, repair, and recovery. Timing is separate: Michelangelo is the current default without an ordinary generation deadline; bounded timing and explicit duration contracts enforce deadlines. Controlled adaptive runs retain their own limits. Optional graph freeze preserves captured declarations during generation; it is not a manual editing lock.
 
-Early contract checks can stop incompatible requirements before synthesis/repair. A behavioral model review must cite existing requirements and can return unverified; attributed review is not a semantic proof.
+Deterministic structural/API checks apply at generation admission. Behavioral graph review is a separate opt-in; a claimed conflict can receive a bounded grounded challenge. Model review must cite existing requirements and can return unverified; attributed review is not a semantic proof.
+
+Final native/headless group compiler errors can return to retained member candidates through bounded repair without resetting invocation accounting. Repaired candidates revisit Conformance and the complete group must compile before host acceptance. Missing environment evidence, unowned diagnostics, and non-compiler gates remain rejections.
+
+### Saved-graph validation and dependency environments
+
+Source-bound import/API evidence supports deterministic dependency reconciliation and declaration, member, call-shape, and port checks for supported JavaScript/TypeScript paths. An explicit bounded graph-repair flow revalidates detached changes before host commit and invalidates affected generation state. Saved receipts support later admission without requiring another import; source-suppression rules still apply to synthesis.
+
+Portable dependency metadata is separate from machine-local readiness receipts. The Node path can reconstruct an isolated validation environment from captured manifests/locks even with project-file scaffolding off. Versions, declarations, consumers, and runtime constraints are verified; incomplete or stale environments remain unavailable/partial. Local/workspace dependencies and non-Node/native toolchains have incomplete coverage.
+
+These are committed development mechanisms with scoped checks, not release qualification. See [Saved-graph regeneration](./docs/saved-graph-regeneration.md).
 
 ### Native project QA
 
@@ -147,7 +157,9 @@ Ambiguous ownership and unsupported multi-owner/SCC expansion require a host-app
 
 Imports support faithful recreation and an explicit source-defect-correction policy. Correction requires a working model/summarizer and remains a diagnosis to validate, not proof of correct behavior. Corrected requirements are identified separately from exact-recreation benchmarks.
 
-Scaffold snapshots retain recognized configuration, lockfiles, passive assets, and discovered entry points while application implementations remain generation targets. Setup and code QA have separate outcomes. Destination files are preserved; native toolchain and local dependency preparation remain conditional.
+Scaffold snapshots retain recognized configuration, lockfiles, passive assets, and discovered entry points while application implementations remain generation targets. Project-file setup and independent QA-environment preparation have separate outcomes. Destination files are preserved; native toolchain and local dependency preparation remain conditional.
+
+Supported static emitted-HTML checks parse inline JavaScript without executing the application. Audited default paths use project evidence for framework/SDK choices. Relationship wire colors/styles and collapsed-edge classification are viewer presentation controls; they do not change graph authority.
 
 Settings persist generation policy and feature controls through the trusted host, with safe browser projections. Installed-host evidence covers settings and command gates on one isolated build/profile, not general generation qualification.
 
@@ -217,6 +229,12 @@ An earlier separate campaign produced 6/6 direct, 5/6 deterministic-guidance, an
 
 A November 1–2 isolated installed-extension check exercised save/cancel, native adaptive command gates, full host exit, and retained settings after cold reopen. It added no model calls. A separate retained regression summary reports 1,022 passing tests across 70 files, using the latest complete passing result for each file and preserving earlier failures. This was selected regression coverage, not a new full-suite or cross-platform release receipt.
 
+### November 13 checkpoint
+
+The retained checkpoint records passing builds, production typechecks, and selected regressions, alongside failing broad-suite and recursive-test checks. Only a subset of failures was reproduced on an earlier baseline; unresolved failures are not all classified as pre-existing. Active remediation has not established a clean release result.
+
+A saved-graph compiler-feedback replay verified no commit with repair disabled and one revision after bounded repair and revalidation. Its repair response and model Conformance were scripted. A later prompt-delivery check is retained as uncommitted follow-up evidence. Neither establishes fresh-model repair quality or installed-host readiness.
+
 See [November progress and limitations](./docs/progress-2026-11.md).
 
 ---
@@ -276,11 +294,13 @@ The retained September exact-build run establishes bounded convergence but not r
 - a long soak;
 - a current clean release receipt.
 
-### B3 — Production qualification
+### B3 — Broad validation and production qualification
 
 **Status: BLOCKED**
 
-Local and bounded evidence is not a production deployment record. The isolated installed-settings check does not close the all-origin visual matrix, provider-generation, soak, or cross-platform gates. Public registry availability, production operations, and broad external compatibility are not established by this repository.
+The November 13 checkpoint recorded broad-suite failures and recursive-test typechecking errors. Active follow-up has cleared some scoped checks, but the broader rerun and skip review remain incomplete. Passing scoped tests and local commits do not close this gate.
+
+Local and bounded evidence is not a production deployment record. The isolated installed-settings check does not close the all-origin visual matrix, fresh-model compiler-repair, soak, or cross-platform gates. Public registry availability, production operations, and broad external compatibility are not established by this repository.
 
 ---
 
@@ -296,7 +316,7 @@ The bounded controller and attempt memory are implemented subsets. Their existen
 
 ## Work in progress
 
-The November 4 working tree includes source-backed graph dependency/API-port reconciliation, an explicit graph-repair flow, further contract/conformance review changes, HTML syntax QA, and edge presentation controls. These are uncommitted development changes, outside the retained installed-build evidence and not promoted to verified release behavior.
+The graph validation, dependency preparation, compiler-feedback, emitted-script QA, and edge presentation work previously listed here is now committed locally. Follow-up changes to validation runners, settings/protocol bindings, platform-sensitive fixtures, tests, and compiler-feedback verification remain uncommitted under active remediation. They are outside the retained checkpoint and installed-build evidence; no broad all-clear or release promotion is implied.
 
 ---
 
