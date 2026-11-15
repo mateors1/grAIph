@@ -1,8 +1,8 @@
 # Bounded Tool Runtime
 
-**Status:** Implemented with bounded functional evidence
+**Status:** Implemented opt-in routes with bounded functional evidence
 
-**Reviewed:** 2026-11-04
+**Reviewed:** 2026-11-15
 
 grAIph treats tool use as an authority and evidence problem, not merely a list of functions attached to a prompt.
 
@@ -12,13 +12,13 @@ The current tool architecture was developed in three layers:
 2. a deterministic minimum-capability surface;
 3. a bounded candidate-tool loop.
 
-The system does not expose unrestricted shell or general-purpose workspace mutation to the generation agent.
+The shared executor, candidate leases, and capability expansion default off (`enableUnifiedToolExecutor`, `enableCandidateToolLeases`, and `enableCapabilityExpansion`). Qualification runs enable selected routes explicitly. The leased candidate routes described here do not expose unrestricted shell or general-purpose workspace mutation to the generation agent. These properties are not universal/default protection across every mode.
 
 ---
 
 ## 1. Trustworthy execution boundary
 
-Supported adapters route tool calls through one executor contract. The boundary is responsible for:
+On enabled supported routes, adapters send tool calls through one executor contract. The boundary is responsible for:
 
 - schema and descriptor validation;
 - trusted principal and route identity;
@@ -53,7 +53,7 @@ The resolution order is:
 5. tool-count and schema-size budgets;
 6. reason-coded plan output.
 
-Hard-policy-excluded schemas never reach the model. Plans are reusable only when their graph, contract, catalog, policy, provider/model, and phase identities still match.
+On an active planned turn, hard-policy-excluded schemas are removed from the effective surface before model dispatch. Plans are reusable only when their graph, contract, catalog, policy, provider/model, and phase identities still match.
 
 ---
 
@@ -72,7 +72,7 @@ A lease is bound to:
 - catalog, contract, and policy identity;
 - expiry and terminal state.
 
-The model sees the effective surface produced by that intersection. It cannot widen the surface by naming another tool or editing transport metadata.
+On the leased route, the model sees the effective surface produced by that intersection. Naming another tool or editing transport metadata does not authorize it. These action/resource policies are not decoder-level per-component vocabularies or a demonstrated general prompt-injection defense.
 
 ---
 

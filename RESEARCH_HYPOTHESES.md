@@ -1,10 +1,10 @@
 # grAIph — Research Hypotheses
 
-**Last reviewed:** 2026-11-04
+**Last reviewed:** 2026-11-15
 
 This document records testable hypotheses and their current evidence status. It is not a publication map, novelty declaration, venue plan, or benchmark leaderboard.
 
-Implementation facts belong in [CURRENT_STATE.md](./CURRENT_STATE.md). The active controlled generation experiment is in [docs/experiment-protocol.md](./docs/experiment-protocol.md). Bounded visual and tooling evidence is summarized separately in [docs/progress-2026-09.md](./docs/progress-2026-09.md).
+Implementation facts belong in [CURRENT_STATE.md](./CURRENT_STATE.md). The active controlled generation experiment is in [docs/experiment-protocol.md](./docs/experiment-protocol.md). The [evidence guide](./docs/evidence-guide.md) separates implementation, scoped verification, preliminary live observations, and proposed experiments. Historical visual/tooling results remain in [September progress](./docs/progress-2026-09.md).
 
 ---
 
@@ -116,7 +116,7 @@ The existence of a mechanism is not evidence that it improves outcomes. Determin
 
 **Falsifier:** Repair introduces critical findings, accepts stale/out-of-scope patches, increases attempts without final benefit, or bypasses the independent Quality Gate.
 
-**Status:** Bounded functional evidence shows finding progress in 30/30 attempted repairs with zero critical findings introduced. General provider-backed benefit remains open.
+**Status:** Bounded tool-program evidence shows finding progress in 30/30 attempted repairs with zero critical findings introduced. A separate later compiler-repair path has natural and controlled live observations on an uncommitted source cut; it is not a matched experiment for this hypothesis or evidence of general provider-backed benefit. See the [evidence guide](./docs/evidence-guide.md).
 
 ---
 

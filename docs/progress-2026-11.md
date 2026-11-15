@@ -1,10 +1,10 @@
 # November 2026 Progress and Limitations
 
-**Reviewed:** 2026-11-13
+**Reviewed:** 2026-11-15
 
-Since the September public preview, grAIph has added controlled adaptive execution, native project QA, grouped generation for cyclic dependencies, persistent settings, and richer project recreation. The deterministic generation route remains the default.
+Since the September public preview, grAIph has added controlled adaptive execution, native project QA, grouped generation for cyclic dependencies, persistent settings, and richer project recreation. Deterministic stage sequencing remains the default; model output can still vary. The shared tool executor, candidate leases, capability expansion, and adaptive controller are implemented opt-ins that default off.
 
-This update covers the local November 13 development checkpoint, including work previously uncommitted at the November 4 review. Active remediation is identified separately. Raw artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
+This update distinguishes the early committed November 13 checkpoint from later uncommitted remediation and live-repair source cuts, documented in the November 15 review. The latest retained verification receipt is dated November 14 UTC (November 13 in Bogotá). Historical failures and scope limits remain part of the record. Raw artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
 
 ---
 
@@ -90,16 +90,26 @@ A later uncommitted follow-up also checked that the complete diagnostics and rej
 
 A saved-graph application campaign completed its declared file set over multiple native batches. Rejected compiler samples, retries, usage, and remaining differential gaps were retained. It was a corrected-source/non-clean arm with unmeasured native packaging/hardware behavior, not an eligible clean leaderboard result or an isolated model comparison.
 
-Builds, production typechecks, and selected regressions passed at the checkpoint. Broad-suite and recursive-test checks did not pass. Some failures reproduce on an earlier baseline, but others remain unresolved; they cannot all be called pre-existing. Follow-up production/test changes and skip review are active and uncommitted. Release qualification remains open.
+Builds, production typechecks, and selected regressions passed at the early checkpoint; broad-suite and recursive checks failed. Only a subset was then reproduced on an earlier baseline, so the failures were not all labeled pre-existing. The later results below supersede that test status without rewriting its artifacts. Release qualification remains open.
 
 See [Saved-graph validation and regeneration](./saved-graph-regeneration.md) for the mechanisms and scoped evidence.
+
+## Later November 13 verification and live repair
+
+Retained follow-up receipts now show passing macOS build, production typechecks, recursive package checks, and a latest root run of 5,356 passing tests, zero failures, and 32 classified skips. The earlier failed run remains retained. Windows-only requirements, immutable historical replays, live-provider tests, and opt-in diagnostics explain the skips; four diagnostics passed separately. See the [evidence guide](./evidence-guide.md) for the breakdown and overlap limits.
+
+A native application campaign recorded a natural live-model compiler repair accepted after real Conformance and group compilation. A separate controlled live canary repaired known faults and committed once; an earlier live candidate failed Conformance and a local readiness rejection made no remote call. These are separate scopes from the earlier scripted replay.
+
+The 53-output-unit campaign required three native batches and two engine fixes/rebuilds between them, including a batch that exhausted its invocation allowance. It retained failed calls, used a corrected-source/non-clean arm, and still has differential gaps. It is not an unchanged single-build end-to-end result or a causal model ranking. Canary costs remain separate from campaign totals.
+
+The suite remediation, failure-identity/diagnostic-custody fixes, and later live-repair evidence remain uncommitted in the reviewed private tree. Passing host-runnable checks do not qualify a clean published release, Windows-native behavior, hardware integration, or the complete visual-origin matrix.
 
 ## Gates that remain open
 
 - The fresh relation-surface/binding-contract provider A/B, with separately attributed structural contracts and at least five repetitions per arm, remains pending.
 - The September one-origin/three-viewer synchronization measurements remain historical evidence. No newer complete all-origin performance matrix or passing 250 ms responsiveness result was established by this review.
 - Full process memory, autonomous harness evolution, and general provider-quality or cost superiority remain unproven.
-- Broad-suite and recursive-test failures remain unresolved while remediation is active.
+- The later passing macOS source cut is uncommitted; clean release and Windows/native qualification remain open.
 - Local fixtures, an isolated installed-host check, and small development comparisons do not establish production readiness or cross-platform qualification.
 
 The governing boundary is [Current state](../CURRENT_STATE.md). Historical September evidence remains in [its original progress note](./progress-2026-09.md); the July benchmark correction remains unchanged.

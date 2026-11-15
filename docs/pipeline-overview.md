@@ -1,6 +1,6 @@
 # grAIph Pipeline Overview
 
-**Reviewed:** 2026-11-13
+**Reviewed:** 2026-11-15
 
 This overview describes the public architecture boundary. The implementation remains private; names and phase descriptions explain the design without exposing private source.
 
@@ -47,7 +47,7 @@ The phase executor is not an autonomous scheduler. It preserves a typed, bounded
 | Analysis | Inspect graph coherence, generation order, cycle policy, and topology plan |
 | Task Planning | Resolve patterns and decompose the node request into bounded tasks |
 | Generation Contract | Compile the authoritative task, graph, language, source, and policy brief |
-| Capability Planning | Resolve semantic requirements to a minimum policy-eligible tool surface |
+| Capability Planning | On explicitly configured routes, resolve semantic requirements to a minimum policy-eligible tool surface |
 | Code Synthesis | Produce candidate files and deterministic normalization artifacts |
 | QA Repair | Run language-appropriate checks and bounded candidate repair |
 | Conformance Repair | Compare candidate behavior with graph/structural contracts and repair within bounds |
@@ -115,7 +115,7 @@ The graph can represent a direct dependency as source, symbols, structural surfa
 
 ## Capability planning and leases
 
-Task planning may describe semantic needs, but it does not choose its own authority. After the generation contract exists, a deterministic planner filters the capability catalog through hard policy, compatibility, coverage, and budget.
+The shared executor, candidate leases, and capability expansion default off; the following describes their explicitly enabled routes. Task planning may describe semantic needs, but it does not choose its own authority. After the generation contract exists, a deterministic planner filters the capability catalog through hard policy, compatibility, coverage, and budget.
 
 At an actual model turn, the host materializes an exact effective surface from:
 

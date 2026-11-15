@@ -2,7 +2,7 @@
 
 **Status:** Committed development implementation with scoped evidence; release qualification open
 
-**Reviewed:** 2026-11-13
+**Reviewed:** 2026-11-15
 
 A saved grAIph graph can now carry source-backed dependency/API evidence and portable dependency requirements into later regeneration. Project-file scaffolding, validation-environment preparation, model generation, and host acceptance have separate results.
 
@@ -30,7 +30,9 @@ Repair preserves the original invocation accounting and configured attempt limit
 
 A November 13 saved-graph replay checked that repair disabled committed nothing and repair enabled made one repair request, revisited Conformance, and committed one graph revision. Inputs and graph intent were preserved, with scaffolding off and no import. A subsequent uncommitted follow-up also verified that both complete compiler diagnostics and the rejected code reached the provider request.
 
-The compiler, source-admission checks, prompt construction, parsing, dependency preparation, and runtime transaction executed. Initial generation, the repair response, and model Conformance were scripted; the VS Code filesystem used a test adapter. The oracle returned archived passing code. This establishes feedback routing and acceptance behavior, not fresh-model repair quality or installed-host qualification.
+In that earlier replay, the compiler, source-admission checks, prompt construction, parsing, dependency preparation, and runtime transaction executed. Initial generation, the repair response, and model Conformance were scripted; the VS Code filesystem used a test adapter and the oracle returned archived passing code. That replay remains routing evidence.
+
+Later receipts record a natural compiler error repaired by a live model in the native host, followed by real Conformance, group compilation, and acceptance. A separate controlled live canary accepted a repair to known faults with a test filesystem adapter; an earlier live candidate failed Conformance, and a readiness rejection made no remote call. This adds scoped live evidence rather than a general repair-success claim.
 
 ## Other checks and visible changes
 
@@ -42,8 +44,8 @@ The graph viewer offers uniform or relationship wire colors/styles and collapsed
 
 ## Current evidence boundary
 
-Builds, production typechecks, selected regressions, and saved-graph replays passed within their retained scope. The November 13 checkpoint also recorded failing broad-suite and recursive-test checks. Only some failures were reproduced on the earlier baseline; the remainder cannot all be labeled pre-existing. Remediation is active, and no clean broad-validation result is claimed here.
+The early November 13 checkpoint recorded broad and recursive-check failures. Later retained macOS runs passed build, production typechecks, recursive package checks, and the root suite, with 32 skips classified. Those remediation/repair changes remain uncommitted; the passing source cut is not a clean released artifact. See the [evidence guide](./evidence-guide.md) for counts, skip categories, and remaining gates.
 
-A separate saved-graph application campaign completed its declared output set over multiple native batches, with rejected compiler samples and later attempts retained. It was a corrected-source, non-clean arm with remaining differential gaps and unmeasured native integration. It does not complete the relation-surface A/B or establish model superiority.
+The later saved-graph application campaign completed 53 output units across three native batches with two intervening engine fixes/rebuilds; rejected attempts and a budget-exhausted batch were retained. No manual generated-code edits or re-import were recorded. It was a corrected-source, non-clean arm with remaining differential gaps and unmeasured native integration. It is not an unchanged single-build end-to-end run, does not complete the relation-surface A/B, and does not establish model, speed, or cost superiority.
 
 See [Current state](../CURRENT_STATE.md), [November progress](./progress-2026-11.md), [Pipeline overview](./pipeline-overview.md), and [Evidence reconciliation](./evidence-reconciliation.md).

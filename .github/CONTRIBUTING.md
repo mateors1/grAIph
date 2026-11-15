@@ -49,6 +49,8 @@ Do not submit private source or internal-only material in an issue or pull reque
 
 Search existing issues and read the maintained boundaries:
 
+- [docs/getting-started.md](../docs/getting-started.md)
+- [docs/evidence-guide.md](../docs/evidence-guide.md)
 - [CURRENT_STATE.md](../CURRENT_STATE.md)
 - [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md)
 - [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md)
