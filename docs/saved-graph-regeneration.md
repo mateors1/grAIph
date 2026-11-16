@@ -2,7 +2,7 @@
 
 **Status:** Committed development implementation with scoped evidence; release qualification open
 
-**Reviewed:** 2026-11-15
+**Reviewed:** 2026-11-16
 
 A saved grAIph graph can now carry source-backed dependency/API evidence and portable dependency requirements into later regeneration. Project-file scaffolding, validation-environment preparation, model generation, and host acceptance have separate results.
 
@@ -46,6 +46,8 @@ The graph viewer offers uniform or relationship wire colors/styles and collapsed
 
 The early November 13 checkpoint recorded broad and recursive-check failures. Later retained macOS runs passed build, production typechecks, recursive package checks, and the root suite, with 32 skips classified. Those remediation/repair changes remain uncommitted; the passing source cut is not a clean released artifact. See the [evidence guide](./evidence-guide.md) for counts, skip categories, and remaining gates.
 
-The later saved-graph application campaign completed 53 output units across three native batches with two intervening engine fixes/rebuilds; rejected attempts and a budget-exhausted batch were retained. No manual generated-code edits or re-import were recorded. It was a corrected-source, non-clean arm with remaining differential gaps and unmeasured native integration. It is not an unchanged single-build end-to-end run, does not complete the relation-surface A/B, and does not establish model, speed, or cost superiority.
+An earlier saved-graph application campaign completed 53 output units across three native batches with two intervening engine fixes/rebuilds; rejected attempts and a budget-exhausted batch were retained. No manual generated-code edits or re-import were recorded. It was a corrected-source, non-clean arm with remaining differential gaps and unmeasured native integration. It is not an unchanged single-build end-to-end run, does not complete the relation-surface A/B, and does not establish model, speed, or cost superiority.
+
+November 15 subsequently added two separate uninterrupted 53/53 host runs. The later V59 run also recorded 53/53 provenance admissions after scoped repair-custody and pre-provider source-exposure regression fixes. Its controlled evaluation retained 288/309 normalized differential cases and 9.4865/10, confidence B. The earlier run's ten unavailable admissions are retained, not rewritten. Both remain corrected-source/non-clean regeneration observations; full admissions do not establish complete semantic parity or universal source-leak resistance. The later source cut recorded 5,437 passing tests and 35 skips, without qualifying native packaging or hardware behavior.
 
 See [Current state](../CURRENT_STATE.md), [November progress](./progress-2026-11.md), [Pipeline overview](./pipeline-overview.md), and [Evidence reconciliation](./evidence-reconciliation.md).

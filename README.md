@@ -6,7 +6,7 @@ grAIph represents software architecture as shared graph state: generation units,
 
 Its central systems question is: **what becomes easier to control and measure when architecture is explicit, rather than reconstructed independently by each model, tool, and interface?**
 
-**Research preview · documentation reviewed November 15, 2026.** The implementation remains private; this repository contains documentation, evidence summaries, hypotheses, and protocols. Latest retained macOS checks passed with classified skips, and scoped live compiler-repair cases now exist. The tested follow-up changes are still uncommitted in the reviewed development tree. Production and cross-platform qualification remain incomplete. The latest retained verification receipt is dated November 14 UTC (November 13 in Bogotá).
+**Research preview · documentation reviewed November 16, 2026.** The grAIph implementation remains private; this repository contains documentation, evidence summaries, hypotheses, and protocols. November 15 added uninterrupted 53-unit host runs, a later run with 53/53 provenance admissions, scoped source-exposure defenses, and graTeha testing-harness increments. These are bounded development results, not production, cross-platform, or clean new-product benchmark qualification.
 
 ## Start here
 
@@ -62,12 +62,18 @@ See [Pipeline overview](./docs/pipeline-overview.md), [Saved-graph regeneration]
 |---|---|
 | Implemented mechanisms | Graph/runtime, candidate pipeline, opt-in bounded capabilities/adaptation, attempt history, and host-controlled finalization exist in development code |
 | Scoped verified behavior | Retained macOS build/type/test checks, transaction and repair fixtures, and limited installed-settings/viewer checks passed within their declared scope |
-| Preliminary observations | Natural and controlled live compiler repairs were accepted; an application campaign completed over three batches with intervening engine fixes |
+| Preliminary observations | Two distinct November 15 host runs completed 53/53 units uninterrupted; the later V59 run also recorded 53/53 provenance admissions |
 | Proposed experiments | The fresh relation-surface/binding-contract A/B and general quality/efficiency benefits remain unestablished |
 
-The latest passing tests cover an uncommitted source cut. The live campaign retained rejected attempts, used a corrected-source/non-clean arm, and has remaining differential gaps. It is not an unchanged single-build end-to-end result or a model ranking. The 250 ms visual responsiveness target has no newer passing qualification.
+The November 15 V59 source cut recorded 5,437 passing tests and 35 skips. Its uninterrupted regeneration run took 51m 26s, with 166 calls and 2,614,498 reported tokens. Controlled evaluation retained 288/309 normalized differential cases and 9.49/10, confidence B. The graph includes requirements derived from corrected source: this is a non-clean regeneration/regression arm, not a clean new-product benchmark, model ranking, or speed/cost comparison. The earlier uninterrupted run's ten unavailable provenance admissions remain in its record. Neither successful completion nor full admissions prove semantic correctness or universal source-leak resistance. Native packaging/hardware and the 250 ms visual target remain unqualified.
 
 The [evidence guide](./docs/evidence-guide.md) explains these limits and the skip categories. [Current state](./CURRENT_STATE.md) governs all public claims. grAIph does not claim production readiness, general benchmark superiority, or demonstrated speed/cost advantages.
+
+## graTeha: an experiment harness alongside grAIph
+
+graTeha (also called Gratia) is a separate semiautomatic testing project. Its November 15 first increment added versioned tests and graph import, a shared browser/MCP experiment engine, readable contract inspection with field-linked issues, evaluator controls, and a scripted approval-gated repair lifecycle. That first increment passed 58 tests. A later November 15 increment reached 79 tests and added project/suite/run dashboards, token/time/quality charts, stage consoles, and versioned reporting that separates measurements, executed findings, and model notes. A live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not generate or repair the proposed application. A retained TEM replay reproduced 9.4865/10, confidence B, without new model calls.
+
+These are dated harness results, not a claim that the complete live six-cell benchmark matrix is qualified. Replay is not new inference; scripted repair is not live repair. See [November progress](./docs/progress-2026-11.md) for the run history, source-exposure qualifications, and harness limitations.
 
 ## Research questions
 

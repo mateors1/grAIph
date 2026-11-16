@@ -1,12 +1,12 @@
 # grAIph — Current State
 
-**Last reviewed:** 2026-11-15
+**Last reviewed:** 2026-11-16
 
 This document is the canonical public claim boundary for grAIph. It distinguishes implementation properties, bounded evidence, experimental mechanisms, current blockers, planned work, and claims the project explicitly does not make.
 
 When another public document is less precise, use this document as the more conservative description.
 
-This review distinguishes the committed November 13 checkpoint from later verified but uncommitted source cuts. Retained macOS build, typecheck, root-suite, and recursive-package checks now pass with classified skips. Natural and controlled live compiler-repair cases add scoped observations; release and cross-platform qualification remain open. See the [evidence guide](./docs/evidence-guide.md) for interpretation and [November progress](./docs/progress-2026-11.md) for chronology. The [public preview guide](./docs/getting-started.md) explains availability.
+This review distinguishes the committed November 13 checkpoint from later verified but uncommitted source cuts, including November 15's uninterrupted regeneration and provenance follow-up. Retained macOS build, typecheck, root-suite, and recursive-package checks now pass with classified skips. Natural and controlled live compiler-repair cases add scoped observations; release and cross-platform qualification remain open. See the [evidence guide](./docs/evidence-guide.md) for interpretation and [November progress](./docs/progress-2026-11.md) for chronology. The [public preview guide](./docs/getting-started.md) explains availability.
 
 ---
 
@@ -244,13 +244,25 @@ A November 1–2 isolated installed-extension check exercised save/cancel, nativ
 
 The early checkpoint recorded 5,228 passing tests, 120 failures, and 27 skips; recursive testing stopped at test typechecking. Those artifacts remain historical evidence. Later remediation passed host-runnable checks, separated Windows requirements, and retained the failed runs rather than rewriting them.
 
-The latest retained macOS root run passed 5,356 tests, zero failed, and 32 were skipped. Build, production typechecking, and recursive package checks also passed. The 32 skipped identities match the remediation audit: 12 Windows-native, 14 immutable historical replays, two live-provider tests, and four opt-in diagnostics. The four diagnostics passed separately. Seven earlier failures became explicit Windows deferrals; two prior skips became runnable and passed. These scopes overlap and must not be added together.
+The retained November 13 macOS root run passed 5,356 tests, zero failed, and 32 were skipped. Build, production typechecking, and recursive package checks also passed. The 32 skipped identities match the remediation audit: 12 Windows-native, 14 immutable historical replays, two live-provider tests, and four opt-in diagnostics. The four diagnostics passed separately. Seven earlier failures became explicit Windows deferrals; two prior skips became runnable and passed. These scopes overlap and must not be added together.
 
 The remediation and later repair changes are uncommitted in the reviewed private working tree. Passing checks on that source cut are not a clean release receipt or Windows qualification.
 
 The earlier saved-graph compiler replay used scripted repair/Conformance responses and remains routing evidence. Later receipts record one natural live-model compiler repair accepted after real Conformance and group compilation, plus a separate controlled live canary that accepted a repair to known faults. An earlier canary failed Conformance and a local readiness rejection made no remote call. Costs, fixture limits, and rejected attempts remain separate.
 
 A native 53-output-unit campaign completed over three batches with two engine fixes/rebuilds between them; one batch exhausted its invocation allowance. No manual generated-code edits or re-import were recorded. It was a corrected-source/non-clean arm with remaining differential gaps, not an unchanged single-build end-to-end experiment, general repair success rate, or model ranking.
+
+### November 15: uninterrupted regeneration, provenance, and graTeha
+
+Two distinct native host batches completed 53/53 units without restart, manual generated-code edits, or engine drift during each run. The first took 53m 26s, with 168 calls, 2,690,898 reported tokens, and four automatic repair calls. It had only 43/53 provenance admissions; ten were unavailable. In-run automatic repair is not an operator interruption.
+
+A subsequent diagnostic reproduced loss of repair-context attribution and exposed a separate enforcement gap: an unmarked protected-source steering input reached the provider and committed despite admission denial. The marked counterpart was blocked. Admission denial alone therefore did not establish exposure prevention.
+
+The later V59 run completed 53/53 units **and 53/53 provenance admissions** in 51m 26s, with 166 calls and 2,614,498 reported tokens. Its source cut recorded 5,437 passing tests and 35 skips. Scoped adversarial checks blocked the previously exposed unmarked steering case before the provider and preserved custody through clean repair. These results do not prove the exact cause of the original unavailable admissions, qualify every input path, or establish universal prompt-injection/source-leak resistance.
+
+V59's retained controlled evaluation was 9.4865/10 (9.49 rounded), confidence B, with 288/309 normalized differential cases. This is a corrected-source/non-clean regeneration arm. Full completion and admission coverage are not complete behavioral parity, a clean new-product benchmark, or a model ranking. Native packaging and hardware behavior remain unmeasured; the reported development checkpoint still contained uncommitted changes.
+
+The separate graTeha/Gratia harness completed a first increment on November 15 with 58 passing tests: versioned graph import, contract inspection, evaluator controls, a shared frontend/MCP engine, and scripted approval-gated repair. Its TEM replay reused retained V59 evidence without new model calls. At that checkpoint, live generation/usage integration and Claude support were unqualified, native VS Code host execution was unsupported, and live repair required source-confinement qualification. A later November 15 increment reached 79 tests with project/suite/run dashboards, scoped token/time/quality charts, stage consoles, and a versioned report projection that separates measured results, executed findings, and unverified model notes. A bounded live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not execute the proposed application or qualify the live benchmark matrix. Claude interoperation, native host execution, and complete live generation/usage adapters remained unqualified.
 
 See [November progress and limitations](./docs/progress-2026-11.md).
 

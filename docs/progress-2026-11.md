@@ -1,10 +1,10 @@
 # November 2026 Progress and Limitations
 
-**Reviewed:** 2026-11-15
+**Reviewed:** 2026-11-16
 
 Since the September public preview, grAIph has added controlled adaptive execution, native project QA, grouped generation for cyclic dependencies, persistent settings, and richer project recreation. Deterministic stage sequencing remains the default; model output can still vary. The shared tool executor, candidate leases, capability expansion, and adaptive controller are implemented opt-ins that default off.
 
-This update distinguishes the early committed November 13 checkpoint from later uncommitted remediation and live-repair source cuts, documented in the November 15 review. The latest retained verification receipt is dated November 14 UTC (November 13 in Bogotá). Historical failures and scope limits remain part of the record. Raw artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
+This update distinguishes the early committed November 13 checkpoint from later uncommitted remediation and live-repair source cuts, documented in the November 15 review. The earlier verification receipt is dated November 14 UTC (November 13 in Bogotá); the November 15 runs and harness increment are recorded separately below. Historical failures and scope limits remain part of the record. Raw artifacts remain private; these summaries do not make the experiments independently reproducible from this repository.
 
 ---
 
@@ -96,13 +96,49 @@ See [Saved-graph validation and regeneration](./saved-graph-regeneration.md) for
 
 ## Later November 13 verification and live repair
 
-Retained follow-up receipts now show passing macOS build, production typechecks, recursive package checks, and a latest root run of 5,356 passing tests, zero failures, and 32 classified skips. The earlier failed run remains retained. Windows-only requirements, immutable historical replays, live-provider tests, and opt-in diagnostics explain the skips; four diagnostics passed separately. See the [evidence guide](./evidence-guide.md) for the breakdown and overlap limits.
+Retained follow-up receipts now show passing macOS build, production typechecks, recursive package checks, and a root run of 5,356 passing tests, zero failures, and 32 classified skips. The earlier failed run remains retained. Windows-only requirements, immutable historical replays, live-provider tests, and opt-in diagnostics explain the skips; four diagnostics passed separately. See the [evidence guide](./evidence-guide.md) for the breakdown and overlap limits.
 
 A native application campaign recorded a natural live-model compiler repair accepted after real Conformance and group compilation. A separate controlled live canary repaired known faults and committed once; an earlier live candidate failed Conformance and a local readiness rejection made no remote call. These are separate scopes from the earlier scripted replay.
 
 The 53-output-unit campaign required three native batches and two engine fixes/rebuilds between them, including a batch that exhausted its invocation allowance. It retained failed calls, used a corrected-source/non-clean arm, and still has differential gaps. It is not an unchanged single-build end-to-end result or a causal model ranking. Canary costs remain separate from campaign totals.
 
 The suite remediation, failure-identity/diagnostic-custody fixes, and later live-repair evidence remain uncommitted in the reviewed private tree. Passing host-runnable checks do not qualify a clean published release, Windows-native behavior, hardware integration, or the complete visual-origin matrix.
+
+## November 15: uninterrupted runs and provenance follow-up
+
+The first unchanged native host batch completed **53/53 units** in **53m 26s**, recording **168 calls**, **2,690,898 reported tokens**, and four automatic repair calls, including two compiler-repair rounds. Retained checks found no restart, manual generated-code edit, or source/configuration/binary drift during the batch, and no failed, cancelled, or skipped generation units. Automatic bounded repair inside the run does not count as an operator interruption.
+
+That completion had incomplete provenance: **43/53 admissions succeeded and ten were unavailable**. A controlled diagnostic reproduced a repair-context attribution loss, but the exact original cause remains unproved because full repair prompts were not retained. A separate adversarial test exposed unmarked protected source in steering reaching the provider and committing despite admission denial; watermarking blocked the marked counterpart. The first run is not retroactively relabeled as having full lineage coverage.
+
+A later scoped repair addressed custody and enforcement on the tested paths. **V59** then completed **53/53 units and 53/53 provenance admissions**, uninterrupted, in **51m 26s**, with **166 calls** and **2,614,498 reported tokens**. Retained evidence pairs had no mismatch. The associated suite recorded **5,437 passing tests and 35 skipped**. Controlled tests blocked the previously exposed unmarked steering case before the provider and preserved custody for clean repair. That is scoped regression/adversarial evidence, not a proof against every possible source exposure or prompt injection.
+
+Controlled/mock behavioral evaluation retained **288/309 normalized differential cases** and **9.4865/10 (9.49 rounded), confidence B**. The workload is TEM regeneration from a graph containing requirements derived from corrected source. Keep its **non-clean, source-corrected** classification: 53/53 generation is not 309/309 behavioral parity or a clean new-product benchmark. The two run totals are separate observations, not a controlled speed or token comparison.
+
+The uninterrupted-run milestone is now met. It does not establish a clean committed release, independent reproducibility, Windows-native qualification, live Unreal/Stream Deck behavior, native packaging, or hardware integration. The reported V59 checkpoint still contained uncommitted changes. Raw artifacts stay private and the July correction is unchanged.
+
+## November 15: graTeha first increment
+
+**graTeha**, also called **Gratia**, is a separate semiautomatic experiment harness rather than a replacement name for grAIph. Its first completed increment provides:
+
+- relational experiment provenance and versioned ordered test specifications;
+- graph import and a human-readable contract/prompt explorer with filtering and field-linked issues;
+- evaluator review/calibration controls, keeping model-reported issues separate from verified findings;
+- shared frontend and MCP access to the experiment engine;
+- a scripted repair lifecycle that requires human approval before dispatch.
+
+The first increment recorded **58 passing tests**. Two isolated grAIph processes exercised real MCP/direct-graph operations without model calls. Codex thread creation and discovery of 31 MCP tools were checked without inference. A retained TEM adapter replay reproduced **9.4865/10, confidence B**, without new model calls; it preserves V59's non-clean label and is not another generation trial.
+
+At this dated checkpoint, native VS Code host execution was unsupported; live generation and complete usage accounting were incomplete; Claude interoperability was untested; and live repair was blocked pending source-confinement qualification. A scripted six-cell matrix and MCP discovery do not qualify the live six-cell benchmark matrix, real-provider parallelism, or model-generated authoring/evaluation. Later harness increments must report their own evidence rather than silently expanding this first-increment claim.
+
+## Later November 15: reporting, consoles, and live authoring
+
+The later graTeha increment recorded **79 Python tests passed**, plus Node chart checks and report-schema validation. A shared versioned report projection now serves frontend and MCP views. Project/suite/run dashboards separate token, time, and quality scopes; stage consoles expose bounded stdout, stderr, and events. Model notes and unverified diagnoses remain distinct from executed findings. The frontend connects Design → Evaluator → Prepare → Run → Inspect controls.
+
+A bounded live Codex authoring trial produced a **12-step prompt-only software design with criteria**. The first evaluator attempt hit its output guard while preserving the design; an evaluator-only retry produced a **10-check draft**, still unreviewed and uncalibrated. The three turns recorded **61,716 tokens**. This is live authoring evidence, not generated application code, a completed experiment, or live repair. The unsuccessful attempt remains part of the cost and outcome record.
+
+The expanded MCP catalog was discovered through the native Codex client without inference turns. The TEM replay completed 17 substeps, reproducing **9.4865/10, confidence B**, without new model calls. Historical generation usage is counted once rather than duplicated for each replay observation; unavailable historical logs remain unavailable.
+
+Claude native interoperability was still untested, live generation/usage adapters remained incomplete, and native VS Code host execution remained unsupported. These reporting and authoring results do not remove the separate live-repair source-confinement gate or qualify all six live benchmark cells.
 
 ## Gates that remain open
 
