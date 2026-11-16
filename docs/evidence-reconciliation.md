@@ -1,6 +1,6 @@
 # Evidence and Topology Reconciliation
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-13
 
 Evidence reconciliation compares declared graph architecture with usage observed in emitted code. Topology reconciliation applies an accepted, fingerprint-bound graph mutation to detached candidate state before the host may persist it.
 
@@ -35,6 +35,16 @@ Generated code provides observed evidence:
 - imported values consumed as data.
 
 The system keeps these sources and their provenance distinct.
+
+---
+
+## Saved-source evidence before generation
+
+The saved-graph path also checks imported-source evidence before generation. Supported JavaScript/TypeScript checks reconcile relative/lazy dependencies and validate exact exports, member visibility, constructor/static/instance use, supported call signatures, and port ownership. Persisted evidence is hash-bound; stale or unsupported evidence cannot silently establish validity.
+
+An explicit bounded repair works on detached state and revalidates before host commit. Dependency/API changes invalidate affected generation state. Optional behavioral model review is separate from deterministic checks. This admission path uses source-derived evidence under the declared source policy; it does not establish that synthesis was free of source leakage or that observed use proves semantics.
+
+See [Saved-graph regeneration](./saved-graph-regeneration.md). Broader dynamic and language coverage remains partial.
 
 ---
 

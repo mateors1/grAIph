@@ -49,10 +49,14 @@ Do not submit private source or internal-only material in an issue or pull reque
 
 Search existing issues and read the maintained boundaries:
 
+- [docs/getting-started.md](../docs/getting-started.md)
+- [docs/evidence-guide.md](../docs/evidence-guide.md)
 - [CURRENT_STATE.md](../CURRENT_STATE.md)
 - [BENCHMARK_SPEC.md](../BENCHMARK_SPEC.md)
 - [RESEARCH_HYPOTHESES.md](../RESEARCH_HYPOTHESES.md)
-- [docs/progress-2026-09.md](../docs/progress-2026-09.md)
+- [docs/progress-2026-11.md](../docs/progress-2026-11.md)
+- [docs/controlled-adaptation.md](../docs/controlled-adaptation.md)
+- [docs/saved-graph-regeneration.md](../docs/saved-graph-regeneration.md)
 
 For a benchmark concern, include the protocol version, evidence track, exact claim, and evidence or reproduction that motivates it.
 
@@ -85,7 +89,10 @@ The public record currently distinguishes:
 
 1. relation-surface and binding-contract provider experiments;
 2. host-independent visual synchronization and performance;
-3. minimum capability surfaces and candidate tools.
+3. minimum capability surfaces and candidate tools;
+4. controlled adaptation and recoverable attempt memory;
+5. diagnostic-repair comparisons under their own frozen protocols;
+6. native project QA and scoped settings/host checks.
 
 A result from one track cannot satisfy another track's gate. For example, visual convergence does not establish generation quality, and deterministic tool-surface results do not complete the relation-surface provider A/B.
 

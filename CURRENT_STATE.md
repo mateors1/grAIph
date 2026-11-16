@@ -1,10 +1,12 @@
 # grAIph — Current State
 
-**Last reviewed:** 2026-09-20
+**Last reviewed:** 2026-11-16
 
 This document is the canonical public claim boundary for grAIph. It distinguishes implementation properties, bounded evidence, experimental mechanisms, current blockers, planned work, and claims the project explicitly does not make.
 
 When another public document is less precise, use this document as the more conservative description.
+
+This review distinguishes the committed November 13 checkpoint from later verified but uncommitted source cuts, including November 15's uninterrupted regeneration and provenance follow-up. Retained macOS build, typecheck, root-suite, and recursive-package checks now pass with classified skips. Natural and controlled live compiler-repair cases add scoped observations; release and cross-platform qualification remain open. See the [evidence guide](./docs/evidence-guide.md) for interpretation and [November progress](./docs/progress-2026-11.md) for chronology. The [public preview guide](./docs/getting-started.md) explains availability.
 
 ---
 
@@ -19,6 +21,17 @@ When another public document is less precise, use this document as the more cons
 | Blocked | A named gate remains unsatisfied; adjacent evidence does not unlock it. |
 
 ---
+
+## Defaults and availability
+
+| Control | Current default | Scope |
+|---|---|---|
+| Unified tool executor | Off | Explicitly enabled supported routes |
+| Candidate tool leases | Off | Qualified leased candidate turns |
+| Capability expansion | Off | Broker-issued deltas on enabled routes |
+| Adaptive controller | Off | Explicit controlled runs with a registered evaluator |
+
+The default generation route uses deterministic stage sequencing; model outputs can vary. A tested opt-in route is not universal/default protection. The engine remains private; see [Getting started](./docs/getting-started.md) for public availability.
 
 ## Verified implementation properties
 
@@ -97,7 +110,7 @@ Candidate, accepted, persisted, and committed are distinct states. The topology 
 
 ### Unified tool execution and durable invocation
 
-Supported tool routes enter a shared executor boundary for schema validation, authorization, confirmation, cancellation, timeout, hooks, bounded output, and terminal-state settlement.
+The shared executor is implemented behind `enableUnifiedToolExecutor`, which defaults off. On explicitly enabled supported routes it provides schema validation, authorization, confirmation, cancellation, timeout, hooks, bounded output, and terminal-state settlement. Evidence for those routes is not a universal protection claim across every mode.
 
 Caller-owned inputs are snapshotted before asynchronous work. Untrusted transport metadata does not grant authority. Full outputs remain local artifacts while models, logs, and remote interfaces receive bounded policy-safe projections.
 
@@ -107,13 +120,59 @@ Invocation lifecycle can be persisted and recovered without replaying an uncerta
 
 Task planning can express semantic capability requirements without naming concrete tools. A deterministic capability planner applies hard policy before ranking and budgets, then materializes an exact effective surface for the current model turn.
 
-The active candidate-tool sequence is bounded:
+Candidate leases and capability expansion are also explicit opt-ins (`enableCandidateToolLeases` and `enableCapabilityExpansion`, both default off). When enabled, the candidate-tool sequence is bounded:
 
 - read-only contract, candidate-symbol, repository-symbol, and diagnostic evidence;
 - before-hash-guarded candidate patching and finding comparison;
 - broker-issued capability expansion with exact leases, budgets, expiry, and denial alternatives.
 
 The Coder can mutate only candidate state. Quality Gate, settings, dependency installation, graph commit, and host finalization do not receive adaptive general-purpose tools.
+
+### Controlled adaptive execution
+
+A controller is implemented for explicitly enabled native runs with a trusted independent evaluator. It can select bounded generation, retry, evaluation, and replanning actions; host policy still owns admission and acceptance. Run storage retains action reservations, usage, candidate/evaluation identity, and interruption state. Unknown usage retains its reservation, and uncertain effects require reconciliation.
+
+The adaptive opt-in defaults off. Ordinary Generate retains the default deterministic stage sequence even when controlled commands are available; model outputs can still vary. Neither autonomous harness evolution nor a general quality/cost benefit is established. See [Controlled adaptation](./docs/controlled-adaptation.md).
+
+### Recoverable attempt history
+
+Rejected candidates, raw evaluation reports, and accepted-to-rejected lineage can be persisted and retrieved in a fresh process. Repairs require a new candidate identity and fresh evaluation against the pinned obligations. Advisory diagnoses do not replace raw findings or host authority.
+
+This is a bounded memory implementation, not the full Record Keeper process-memory role. Local repair fixtures do not establish general model repair quality.
+
+### Grouped generation and invocation controls
+
+Batch scheduling groups cyclic dependencies for joint validation and host acceptance. Dependent groups wait for complete dependency-group acceptance. Failures, stale state, and uncertain writes retain distinct terminal/recovery outcomes. Logical group transactions do not establish crash-atomicity across files, graph storage, and SQLite.
+
+One invocation ledger accounts for calls and tokens across planning, coding, repair, and recovery. Timing is separate: Michelangelo is the current default without an ordinary generation deadline; bounded timing and explicit duration contracts enforce deadlines. Controlled adaptive runs retain their own limits. Optional graph freeze preserves captured declarations during generation; it is not a manual editing lock.
+
+Deterministic structural/API checks apply at generation admission. Behavioral graph review is a separate opt-in; a claimed conflict can receive a bounded grounded challenge. Model review must cite existing requirements and can return unverified; attributed review is not a semantic proof.
+
+Final native/headless group compiler errors can return to retained member candidates through bounded repair without resetting invocation accounting. Repaired candidates revisit Conformance and the complete group must compile before host acceptance. Missing environment evidence, unowned diagnostics, and non-compiler gates remain rejections.
+
+### Saved-graph validation and dependency environments
+
+Source-bound import/API evidence supports deterministic dependency reconciliation and declaration, member, call-shape, and port checks for supported JavaScript/TypeScript paths. An explicit bounded graph-repair flow revalidates detached changes before host commit and invalidates affected generation state. Saved receipts support later admission without requiring another import; source-suppression rules still apply to synthesis.
+
+Portable dependency metadata is separate from machine-local readiness receipts. The Node path can reconstruct an isolated validation environment from captured manifests/locks even with project-file scaffolding off. Versions, declarations, consumers, and runtime constraints are verified; incomplete or stale environments remain unavailable/partial. Local/workspace dependencies and non-Node/native toolchains have incomplete coverage.
+
+These are committed development mechanisms with scoped checks, not release qualification. See [Saved-graph regeneration](./docs/saved-graph-regeneration.md).
+
+### Native project QA
+
+A host-registered profile defines independent readiness checks and graph-owned paths. The workflow can assess findings, route unambiguous owner repairs through the controlled native path, validate detached candidates, and reassess the project. Qualified status additionally requires integration, a complete tested-artifact inventory, and verification in a different reopened native host instance. Changed source, profile, runtime, or artifacts invalidate the projected verdict.
+
+Ambiguous ownership and unsupported multi-owner/SCC expansion require a host-approved plan. Infrastructure failures remain unverified. MCP QA mutations use a separate explicit allow-list, empty by default; graph-edit access cannot register an evaluator.
+
+### Project recreation and persistent settings
+
+Imports support faithful recreation and an explicit source-defect-correction policy. Correction requires a working model/summarizer and remains a diagnosis to validate, not proof of correct behavior. Corrected requirements are identified separately from exact-recreation benchmarks.
+
+Scaffold snapshots retain recognized configuration, lockfiles, passive assets, and discovered entry points while application implementations remain generation targets. Project-file setup and independent QA-environment preparation have separate outcomes. Destination files are preserved; native toolchain and local dependency preparation remain conditional.
+
+Supported static emitted-HTML checks parse inline JavaScript without executing the application. Audited default paths use project evidence for framework/SDK choices. Relationship wire colors/styles and collapsed-edge classification are viewer presentation controls; they do not change graph authority.
+
+Settings persist generation policy and feature controls through the trusted host, with safe browser projections. Installed-host evidence covers settings and command gates on one isolated build/profile, not general generation qualification.
 
 ### Language capabilities
 
@@ -133,7 +192,7 @@ Benchmark eligibility remains separate from ordinary generation success. A commi
 
 ### Host-independent visual correctness
 
-The latest reviewed exact-build run performed 35 actual Codex-browser-origin Add Node edits on a graph growing from 500 to 535 nodes while VS Code and standalone Chrome were attached.
+The retained September 2026 exact-build run performed 35 actual Codex-browser-origin Add Node edits on a graph growing from 500 to 535 nodes while VS Code and standalone Chrome were attached.
 
 For that run:
 
@@ -171,6 +230,42 @@ These results establish bounded functional behavior. They do not establish provi
 
 See [September 2026 progress and limitations](./docs/progress-2026-09.md).
 
+### Diagnostic-repair comparisons
+
+In a later six-case Codex development comparison, direct repair, original guidance, and clarified guidance each passed 6/6 cases. The campaign recorded 30 calls with no retries, 12 valid diagnoses, and 18 passing repairs. Clarified guidance used 213,834 reported input/output tokens versus 101,851 for direct repair: 2.099 times as many, with six paired passing ties and no wins.
+
+An earlier separate campaign produced 6/6 direct, 5/6 deterministic-guidance, and 3/6 scheduled reasoned-guidance passes. Unavailable diagnoses/repairs and all diagnosis costs remained in the denominator. Neither campaign supports default promotion. They are exposed development samples under different protocols, not pooled replications, a holdout study, or the relation-surface A/B.
+
+### Installed settings and regression scope
+
+A November 1–2 isolated installed-extension check exercised save/cancel, native adaptive command gates, full host exit, and retained settings after cold reopen. It added no model calls. A separate retained regression summary reports 1,022 passing tests across 70 files, using the latest complete passing result for each file and preserving earlier failures. This was selected regression coverage, not a new full-suite or cross-platform release receipt.
+
+### November 13 checkpoint and later verification
+
+The early checkpoint recorded 5,228 passing tests, 120 failures, and 27 skips; recursive testing stopped at test typechecking. Those artifacts remain historical evidence. Later remediation passed host-runnable checks, separated Windows requirements, and retained the failed runs rather than rewriting them.
+
+The retained November 13 macOS root run passed 5,356 tests, zero failed, and 32 were skipped. Build, production typechecking, and recursive package checks also passed. The 32 skipped identities match the remediation audit: 12 Windows-native, 14 immutable historical replays, two live-provider tests, and four opt-in diagnostics. The four diagnostics passed separately. Seven earlier failures became explicit Windows deferrals; two prior skips became runnable and passed. These scopes overlap and must not be added together.
+
+The remediation and later repair changes are uncommitted in the reviewed private working tree. Passing checks on that source cut are not a clean release receipt or Windows qualification.
+
+The earlier saved-graph compiler replay used scripted repair/Conformance responses and remains routing evidence. Later receipts record one natural live-model compiler repair accepted after real Conformance and group compilation, plus a separate controlled live canary that accepted a repair to known faults. An earlier canary failed Conformance and a local readiness rejection made no remote call. Costs, fixture limits, and rejected attempts remain separate.
+
+A native 53-output-unit campaign completed over three batches with two engine fixes/rebuilds between them; one batch exhausted its invocation allowance. No manual generated-code edits or re-import were recorded. It was a corrected-source/non-clean arm with remaining differential gaps, not an unchanged single-build end-to-end experiment, general repair success rate, or model ranking.
+
+### November 15: uninterrupted regeneration, provenance, and graTeha
+
+Two distinct native host batches completed 53/53 units without restart, manual generated-code edits, or engine drift during each run. The first took 53m 26s, with 168 calls, 2,690,898 reported tokens, and four automatic repair calls. It had only 43/53 provenance admissions; ten were unavailable. In-run automatic repair is not an operator interruption.
+
+A subsequent diagnostic reproduced loss of repair-context attribution and exposed a separate enforcement gap: an unmarked protected-source steering input reached the provider and committed despite admission denial. The marked counterpart was blocked. Admission denial alone therefore did not establish exposure prevention.
+
+The later V59 run completed 53/53 units **and 53/53 provenance admissions** in 51m 26s, with 166 calls and 2,614,498 reported tokens. Its source cut recorded 5,437 passing tests and 35 skips. Scoped adversarial checks blocked the previously exposed unmarked steering case before the provider and preserved custody through clean repair. These results do not prove the exact cause of the original unavailable admissions, qualify every input path, or establish universal prompt-injection/source-leak resistance.
+
+V59's retained controlled evaluation was 9.4865/10 (9.49 rounded), confidence B, with 288/309 normalized differential cases. This is a corrected-source/non-clean regeneration arm. Full completion and admission coverage are not complete behavioral parity, a clean new-product benchmark, or a model ranking. Native packaging and hardware behavior remain unmeasured; the reported development checkpoint still contained uncommitted changes.
+
+The separate graTeha/Gratia harness completed a first increment on November 15 with 58 passing tests: versioned graph import, contract inspection, evaluator controls, a shared frontend/MCP engine, and scripted approval-gated repair. Its TEM replay reused retained V59 evidence without new model calls. At that checkpoint, live generation/usage integration and Claude support were unqualified, native VS Code host execution was unsupported, and live repair required source-confinement qualification. A later November 15 increment reached 79 tests with project/suite/run dashboards, scoped token/time/quality charts, stage consoles, and a versioned report projection that separates measured results, executed findings, and unverified model notes. A bounded live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not execute the proposed application or qualify the live benchmark matrix. Claude interoperation, native host execution, and complete live generation/usage adapters remained unqualified.
+
+See [November progress and limitations](./docs/progress-2026-11.md).
+
 ---
 
 ## Implemented but experimentally unvalidated as improvements
@@ -195,6 +290,10 @@ Dependencies can be represented as bodies, symbol surfaces, relation information
 
 The runtime mechanisms and bounded safety properties exist. Whether active minimum surfaces, candidate repair, or brokered expansion improve provider-backed generation quality remains an empirical question.
 
+### Controlled selection and memory-guided repair
+
+The controller, attempt lineage, and advisory diagnosis interfaces are implemented. General improvement in quality or total work over deterministic generation remains unproven. The small development comparisons above do not justify automatic promotion or default changes.
+
 ### Topology-derived layout
 
 A deterministic topology-derived visual placement strategy exists behind explicit controls. Its existence does not establish a generation-quality or human-efficiency benefit.
@@ -215,7 +314,7 @@ Tooling-program results, host synchronization evidence, historical scores, and d
 
 **Status: BLOCKED**
 
-The latest exact-build run establishes bounded convergence but not release-complete visual hosting. Open work includes:
+The retained September exact-build run establishes bounded convergence but not release-complete visual hosting. Open work includes:
 
 - evidence-based responsiveness budgets;
 - the final-build all-origin/viewer matrix;
@@ -224,23 +323,29 @@ The latest exact-build run establishes bounded convergence but not release-compl
 - a long soak;
 - a current clean release receipt.
 
-### B3 — Production qualification
+### B3 — Committed release and native qualification
 
 **Status: BLOCKED**
 
-Local and bounded evidence is not a production deployment record. Public package availability, production operations, and broad external compatibility are not claimed by this repository.
+Later macOS root and recursive checks passed, with skips classified, on an uncommitted source cut. The early failing checkpoint is historical; it is no longer the latest test status. A clean committed/release artifact, Windows-native qualification, native integration, and the broader visual/soak gates remain unestablished.
+
+Natural and controlled live compiler-repair observations do not replace those release gates. The isolated installed-settings check has its own scope. Public registry availability, production operations, and broad external compatibility are not established by this repository.
 
 ---
 
 ## Planned or deliberately deferred
 
-- Durable Record Keeper consumption of runtime events, accepted/rejected attempts, evidence, recurrence, and provenance as full process memory
-- Adaptive orchestration driven by reliable state, evaluation, and memory
-- An external AVO-style loop based on observe → attribute → replay → evaluate
+- Full Record Keeper process memory beyond recoverable attempt/evaluation lineage
+- Autonomous harness evolution and automatic promotion of policies or diagnostic guidance
+- Broad evidence-informed strategy selection with a demonstrated advantage over deterministic control
 - Confined multi-tool program execution such as `workbench_execute`
 - Automatic topology revision without explicit evidence, bounded planning, and host authorization
 
-The current system provides substrates for some of this work. A substrate is not the completed capability.
+The bounded controller and attempt memory are implemented subsets. Their existence does not establish the broader capabilities above.
+
+## Work in progress
+
+Graph validation, dependency preparation, initial compiler feedback, emitted-script QA, and edge presentation are committed locally. Later suite/runner fixes, settings/protocol bindings, failure identity, complete diagnostic custody, and live-repair follow-ups remain uncommitted in the reviewed tree. Their later passing receipts are source-specific and do not retroactively qualify the earlier checkpoint or installed build.
 
 ---
 
@@ -256,9 +361,11 @@ grAIph does not currently claim:
 - that every language has identical analysis capabilities;
 - that exponential attenuation is the optimal context-allocation rule;
 - that Record Keeper already supplies complete process memory;
-- that adaptive orchestration or AVO is active;
+- that adaptation is the ordinary generation default or autonomous harness evolution is active;
 - that confined general-purpose workbench execution is available;
 - that historical byte-identical results are valid;
+- that runtime allow-lists are decoder-level per-component vocabularies;
+- that prompt-injection resistance or a complete architecture of cooperating model roles has been demonstrated;
 - that implementation novelty establishes research novelty;
 - that a model response or tool result is equivalent to committed project state.
 

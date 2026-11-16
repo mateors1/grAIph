@@ -1,8 +1,8 @@
 # Runtime Observability
 
-**Status:** Implemented locally; durable process-memory consumption remains future work
+**Status:** Observation and bounded attempt memory implemented; full process memory incomplete
 
-**Reviewed:** 2026-09-20
+**Reviewed:** 2026-11-04
 
 grAIph separates observation from authority. Streaming tokens, lifecycle events, diagnostics, and replay records can explain what is happening without becoming a second control plane.
 
@@ -63,26 +63,18 @@ No earlier row implies a later row.
 
 ## Record Keeper and process memory
 
-Record Keeper is the intended durable consumer for accepted and rejected attempts, evidence, provenance, recurrence, and retrieval. The current runtime provides useful substrates:
+Record Keeper can now retrieve durable revision-attempt records, including rejected candidate snapshots, raw evaluations, and accepted-to-rejected lineage. Local repair fixtures exercise retrieval in a fresh process and require new evaluation before a repaired candidate can be accepted.
 
-- bounded runtime events;
-- durable invocation lifecycle records;
-- candidate and host receipts;
-- graph and topology fingerprints;
-- evaluation and finding deltas.
-
-The full process-memory role is not yet claimed. In particular, the current event stream is bounded and does not itself provide long-horizon retrieval, attempt lineage, or adaptive strategy selection.
+This bounded attempt memory is separate from event replay. The runtime event stream remains bounded and observational; it does not supply complete long-horizon memory or independently select strategies. Full recurrence retrieval and the broader Record Keeper process-memory role remain incomplete.
 
 ---
 
-## Adaptive and AVO-style loops
+## Controlled adaptation and AVO-style research
 
-An external improvement loop could use the sequence:
+An explicitly enabled controller can use current host state and evaluation evidence to propose bounded generation, retry, evaluation, and replanning actions. It records policy, reservations, usage, and interruption state. The trusted host enforces action admission and candidate acceptance; observations never grant themselves authority.
 
-~~~text
-observe → attribute → replay → evaluate → propose a bounded change
-~~~
+Ordinary Generate remains deterministic. Controlled adaptation requires its own enablement, evaluator, and budgets; the presence of events or memory does not enable it. Autonomous harness evolution and automatic promotion remain unimplemented research directions.
 
-That direction remains planned research. Adaptive execution is not enabled merely because the system can observe events. Reliable state, evaluation, provenance, and memory must exist before evidence can safely influence orchestration or topology.
+Small diagnostic-repair comparisons have not justified changing the default. See [Controlled adaptation and project QA](./controlled-adaptation.md) and [November progress](./progress-2026-11.md).
 
 See [Bounded tool runtime](./tool-runtime.md), [Pipeline overview](./pipeline-overview.md), and [Current state](../CURRENT_STATE.md).

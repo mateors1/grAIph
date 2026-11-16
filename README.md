@@ -1,247 +1,105 @@
 # grAIph
 
-**A graph-first visual software environment for bounded agentic development.**
+**A graph-first software environment with bounded AI generation and host-controlled commits.**
 
-grAIph explores a practical systems question:
+grAIph represents software architecture as shared graph state: generation units, dependencies, interfaces, constraints, and evidence. The engine uses that graph to choose generation order, compile relevant context, validate candidates, and reconcile accepted changes.
 
-> What changes when software architecture is explicit, shared state instead of context that every model, tool, and interface must reconstruct independently?
+Its central systems question is: **what becomes easier to control and measure when architecture is explicit, rather than reconstructed independently by each model, tool, and interface?**
 
-The development implementation represents generation units, dependencies, interfaces, constraints, evidence, and revision history as a graph. That graph drives visualization, context compilation, generation order, scoped tool access, validation, and reconciliation. Model output is treated as an unverified candidate; only an authoritative host can commit graph and file state.
+**Research preview · documentation reviewed November 16, 2026.** The grAIph implementation remains private; this repository contains documentation, evidence summaries, hypotheses, and protocols. November 15 added uninterrupted 53-unit host runs, a later run with 53/53 provenance admissions, scoped source-exposure defenses, and graTeha testing-harness increments. These are bounded development results, not production, cross-platform, or clean new-product benchmark qualification.
 
-The same project representation can be attached to by the native VS Code surface, an authenticated local browser surface, and MCP-aware operators. Local viewer state remains local, while committed graph changes converge through one revisioned runtime.
+## Start here
 
-**Current status:** the architecture is implemented and actively evolving in a private development workspace. Host-independent visualization, embodied MCP, provider-neutral observation, topology reconciliation, and bounded candidate tooling have local or bounded functional evidence. Release qualification remains incomplete, the current visual responsiveness target is not met, and the provider-backed relation-surface A/B is still pending. grAIph is not making a benchmark-superiority claim.
+| If you want to… | Read |
+|---|---|
+| Understand one concrete task | [Illustrative workflow](./docs/illustrative-workflow.md) |
+| Check availability or reproduction requirements | [Getting started](./docs/getting-started.md) |
+| Assess the strength and limits of the evidence | [Evidence guide](./docs/evidence-guide.md) |
+| Inspect the architecture and current claims | [Pipeline overview](./docs/pipeline-overview.md) · [Current state](./CURRENT_STATE.md) |
 
----
+The [July benchmark correction](./archive/2026-07-17-benchmark-correction.md) remains part of the project record. Retracted byte-identical results are not current evidence.
 
-## Why graph-first?
+## A concrete workflow
 
-Raw model capability does not answer the systems questions that appear in larger generation tasks:
+Imagine a program that parses CSV rows, calculates totals, and formats a report. Its graph records which unit provides the row shape, which consumes it, and what each output must satisfy.
 
-- Which dependencies belong in context for this generation unit?
-- Which parts of those dependencies are requirements rather than suggestions?
-- In what order should interconnected units be generated?
-- Which tools should be visible for this task and phase?
-- How should plausible output be distinguished from accepted project state?
-- What happens when emitted code disagrees with the graph that requested it?
-- How can several interfaces operate on one project without creating shadow state?
-- How can an experiment distinguish generation from source leakage or recovery behavior?
+1. Validate the supported graph/API contracts and derive dependency order.
+2. Compile the target's requirements, relevant neighboring interfaces, source policy, and permitted tools into generation context.
+3. Generate detached candidate code, run applicable QA and conformance checks, and repair within the invocation's limits.
+4. Accept through the authoritative host, which persists graph/file state and returns a covering receipt.
 
-grAIph treats these as architecture, orchestration, authority, validation, and evidence problems.
+A compiler rejection can return an owned candidate to bounded repair; missing validation dependencies remain unavailable evidence. A model response or successful tool call is not itself a committed change. The [worked explanation](./docs/illustrative-workflow.md) is illustrative, not a recorded benchmark.
 
----
-
-## The system in one view
+## How the system fits together
 
 ~~~text
-                    shared revisioned graph runtime
-                   /              |                \
-          VS Code surface   browser/Codex UI      MCP operators
-                   \              |                /
-                    graph-scoped execution request
-                               ↓
-             topology + contracts + capability plan
-                               ↓
-            synthesis → QA/repair → conformance → gate
-                               ↓
-                 unverified candidate + evidence
-                               ↓
-             graph reconciliation + host finalization
-                               ↓
-                committed graph/file state + receipt
+Shared graph + requirements
+            ↓
+Dependency order + context + opt-in bounded capabilities
+            ↓
+Candidate synthesis → QA/repair → conformance → gate
+            ↓
+Graph reconciliation + authoritative host persistence
+            ↓
+Committed graph/file state + receipt
 ~~~
 
-The graph is both a visual architecture and an intermediate representation. Interfaces may observe or propose changes, but they do not acquire commit authority merely by being connected.
+The default route uses deterministic stage sequencing. Model output can still vary. The shared tool executor, candidate leases, capability expansion, and adaptive controller default off. Their controls apply to explicitly enabled routes and scoped qualification runs. The adaptive controller requires a registered independent evaluator and retains the same host acceptance boundary.
 
----
+The private development implementation includes:
 
-## Implemented architecture
+- **Shared project state:** VS Code, authenticated local browser viewers, and MCP operators attach to one revisioned runtime. Selection and viewport state remain local.
+- **Graph-informed context:** Topological Context Compilation derives ordering and context representations from dependencies, surfaces, and contracts.
+- **Candidate-first generation:** synthesis and repair operate on proposed state; independent gates and the host determine acceptance.
+- **Saved-graph regeneration:** source-bound dependency/API evidence and portable dependency requirements support later admission and independent Node QA preparation.
+- **Attempt history and project QA:** retained candidates/evaluations support later repair; project readiness requires its own trusted checks and integration/reopen evidence.
 
-### Shared visual runtime
+See [Pipeline overview](./docs/pipeline-overview.md), [Saved-graph regeneration](./docs/saved-graph-regeneration.md), and [Controlled adaptation](./docs/controlled-adaptation.md).
 
-One host-independent UI can attach through VS Code or an authenticated local browser, including the Codex browser surface. A versioned visual protocol separates durable graph commands from viewer-local state such as selection, hover, viewport, and open panels.
+## What the evidence supports
 
-MCP, VS Code, and browser-originated graph edits use the same authoritative runtime, persistence, revision, receipt, and replay path. See [Host-independent visual runtime](./docs/visual-runtime.md).
+| Evidence level | Current position |
+|---|---|
+| Implemented mechanisms | Graph/runtime, candidate pipeline, opt-in bounded capabilities/adaptation, attempt history, and host-controlled finalization exist in development code |
+| Scoped verified behavior | Retained macOS build/type/test checks, transaction and repair fixtures, and limited installed-settings/viewer checks passed within their declared scope |
+| Preliminary observations | Two distinct November 15 host runs completed 53/53 units uninterrupted; the later V59 run also recorded 53/53 provenance admissions |
+| Proposed experiments | The fresh relation-surface/binding-contract A/B and general quality/efficiency benefits remain unestablished |
 
-### Topological Context Compilation
+The November 15 V59 source cut recorded 5,437 passing tests and 35 skips. Its uninterrupted regeneration run took 51m 26s, with 166 calls and 2,614,498 reported tokens. Controlled evaluation retained 288/309 normalized differential cases and 9.49/10, confidence B. The graph includes requirements derived from corrected source: this is a non-clean regeneration/regression arm, not a clean new-product benchmark, model ranking, or speed/cost comparison. The earlier uninterrupted run's ten unavailable provenance admissions remain in its record. Neither successful completion nor full admissions prove semantic correctness or universal source-leak resistance. Native packaging/hardware and the 250 ms visual target remain unqualified.
 
-Nodes represent generation units. Edges represent dependencies or structural relationships. Node and edge surfaces can carry interfaces, contracts, usage expectations, and provenance.
+The [evidence guide](./docs/evidence-guide.md) explains these limits and the skip categories. [Current state](./CURRENT_STATE.md) governs all public claims. grAIph does not claim production readiness, general benchmark superiority, or demonstrated speed/cost advantages.
 
-Generation order is derived from topology. Context is compiled from graph relationships rather than assembled as an undifferentiated prompt. Direct neighbors may receive richer representations while distant nodes receive surfaces, symbols, identity, or no context. The policy is configurable and remains a research variable.
+## graTeha: an experiment harness alongside grAIph
 
-See [Topological Context Compilation](./docs/tcc-primer.md).
+graTeha (also called Gratia) is a separate semiautomatic testing project. Its November 15 first increment added versioned tests and graph import, a shared browser/MCP experiment engine, readable contract inspection with field-linked issues, evaluator controls, and a scripted approval-gated repair lifecycle. That first increment passed 58 tests. A later November 15 increment reached 79 tests and added project/suite/run dashboards, token/time/quality charts, stage consoles, and versioned reporting that separates measurements, executed findings, and model notes. A live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not generate or repair the proposed application. A retained TEM replay reproduced 9.4865/10, confidence B, without new model calls.
 
-### Candidate-first pipeline
+These are dated harness results, not a claim that the complete live six-cell benchmark matrix is qualified. Replay is not new inference; scripted repair is not live repair. See [November progress](./docs/progress-2026-11.md) for the run history, source-exposure qualifications, and harness limitations.
 
-The default PATH B route is implemented as typed phases:
+## Research questions
 
-1. analysis and topology planning;
-2. task planning;
-3. generation-contract construction;
-4. capability planning;
-5. code synthesis and deterministic normalization;
-6. QA and bounded repair;
-7. conformance and bounded repair;
-8. independent quality gating;
-9. graph-facing evidence production;
-10. graph reconciliation;
-11. candidate assembly;
-12. host persistence, receipt verification, and committed state.
+The active controlled experiment asks whether explicit relation surfaces, usage bindings, and structural contracts change architectural fidelity or run-to-run spread under source suppression.
 
-The Orchestrator remains the public sequencing facade. A model response, tool result, validation pass, or graph proposal is not by itself a committed generation. See [Pipeline overview](./docs/pipeline-overview.md).
+Eligible arms require a pinned source/runtime, a fresh graph per arm, the same declared provider/backend and settings, complete provenance and leak audits, and at least five repetitions per arm. The experiment remains pending; implementation and local test results do not answer it.
 
-### Bounded candidate tools
+Other hypotheses concern context allocation, reconciliation, candidate repair, and evidence-informed selection. Each needs its own control and decision criteria. See [Research hypotheses](./RESEARCH_HYPOTHESES.md), [Benchmark specification](./BENCHMARK_SPEC.md), and [Experiment protocol](./docs/experiment-protocol.md).
 
-Tool execution uses a common policy boundary across supported routes. Semantic capability requirements are resolved against a catalog and materialized as exact, phase-bound leases. Read-only evidence tools arrive before candidate-only mutation tools; capability expansion is broker-controlled and cannot grant itself host authority.
+## Availability and documentation
 
-Quality Gate, graph commit, settings, package installation, and host finalization remain outside the candidate lease system. Confined general-purpose workbench execution is not part of the current program. See [Bounded tool runtime](./docs/tool-runtime.md).
+This checkout is a documentation preview, not an engine distribution. It provides no verified public install command, runnable sample, or hosted editor. See [Getting started](./docs/getting-started.md) for what can be inspected now and what independent reproduction would require.
 
-### Observation is not authority
+Further architecture references:
 
-Provider streaming and runtime events are observation planes. They support token progress, bounded replay, MCP subscriptions, diagnostics, and future process-memory consumers. The final provider response remains authoritative for pipeline interpretation, and committed state still requires host persistence and a receipt.
+- [Topological Context Compilation](./docs/tcc-primer.md)
+- [Host-independent visual runtime](./docs/visual-runtime.md)
+- [Bounded tool runtime](./docs/tool-runtime.md)
+- [Runtime observability](./docs/runtime-observability.md)
+- [Evidence reconciliation](./docs/evidence-reconciliation.md)
+- [Topology-derived layout](./TOPOLOGY_LAYOUT.md)
+- [November progress](./docs/progress-2026-11.md) and historical [September evidence](./docs/progress-2026-09.md)
+- [Contributing](./.github/CONTRIBUTING.md) and [citation metadata](./CITATION.cff)
 
-See [Runtime observability](./docs/runtime-observability.md).
+## Contact and license
 
-### Topology plan and reconciliation
-
-Topology Scrutineer produces an immutable, graph-fingerprint-bound plan. A single reconciliation executor applies candidate add/remove mutations to detached state. The host verifies that persisted graph and file state cover the accepted candidate before the result becomes committed.
-
-This graph transaction is separate from visual node placement. See [Evidence reconciliation](./docs/evidence-reconciliation.md) and [Topology-derived layout](./TOPOLOGY_LAYOUT.md).
-
----
-
-## Current evidence boundary
-
-The latest reviewed visual-host run performed 35 actual Codex-browser-origin Add Node edits on a graph growing from 500 to 535 nodes, with native VS Code and standalone Chrome attached concurrently. Every observation matched the durable revision, document hash, receipt, and all three viewer layouts.
-
-That run does **not** establish release readiness:
-
-- it covered one edit origin and three viewers, not the complete all-origin matrix;
-- it did not exercise live provider generation;
-- p95 receipt-to-layout observations were 1266 ms in VS Code, 1414 ms in Chrome, and 1506 ms in the Codex browser;
-- all three exceeded the unchanged 250 ms target.
-
-The completed minimum-tool-surface program also has bounded functional evidence, including deterministic contract reduction, candidate-repair progress, and uncommon brokered expansion. Those results are not a provider-quality or production-frequency claim.
-
-See [September 2026 progress and limitations](./docs/progress-2026-09.md) and the maintained [current claim boundary](./CURRENT_STATE.md).
-
----
-
-## Active research program
-
-The current controlled generation experiment asks whether explicit relation surfaces, usage bindings, and structural contracts change behavior under source suppression.
-
-Eligible arms require:
-
-- the same pinned source revision;
-- a fresh graph for each arm;
-- the same real provider, model, sampling settings, workspace, and run count;
-- explicit manifests, provider identity, receipts, and prompt-leak audits;
-- at least five repetitions per arm.
-
-That provider-backed A/B has **not** been completed and reviewed. Visual-runtime and tooling evidence do not substitute for it. Until an eligible decision record exists, related mechanisms remain experimental and no benchmark-superiority conclusion is published.
-
-See [Benchmark specification v2](./BENCHMARK_SPEC.md), [Research hypotheses](./RESEARCH_HYPOTHESES.md), and [Experiment protocol](./docs/experiment-protocol.md).
-
----
-
-## Public claim boundary
-
-### Verified implementation properties
-
-- Graph-structured generation and topology-derived ordering
-- Typed candidate pipeline and explicit candidate/committed boundary
-- Host-independent visual protocol and shared revisioned runtime
-- Headless and authenticated embodied MCP paths
-- Provider-neutral streaming with an authoritative final response
-- Immutable topology plans and transactional graph reconciliation
-- Unified tool-execution policy and durable invocation lifecycle
-- Semantic capability planning, exact leases, candidate-only repair, and brokered expansion
-- Benchmark manifests, provenance controls, and prompt-leak auditing machinery
-- Deterministic topology-derived layout implementation
-
-Some properties are verified locally or through bounded functional evidence rather than production deployment. The exact qualification for each claim is in [CURRENT_STATE.md](./CURRENT_STATE.md).
-
-### Implemented but experimentally unvalidated as improvements
-
-- Unified relation surfaces and usage bindings
-- Structural contracts under source suppression
-- Evidence rewiring and contract retraction
-- Alternative graph-informed context representations
-- Active minimum-capability surfaces as a provider-quality intervention
-- Candidate repair and capability expansion as quality improvements
-- Topology-derived visual placement as a generation intervention
-
-### Planned or deliberately deferred
-
-- Durable Record Keeper consumption as full process memory
-- Adaptive orchestration driven by accumulated evidence
-- External AVO-style observe → attribute → replay → evaluate loops
-- Confined multi-tool program execution
-- Automatic topology revision without explicit evidence and host authority
-
-### Not currently claimed
-
-- Benchmark superiority or parity with frontier coding systems
-- Production readiness or release-complete visual hosting
-- That the 250 ms visual responsiveness target is met
-- That deterministic functional results prove provider-quality improvement
-- That a fixed exponential context rule is optimal
-- That historical retracted byte-identical scores are evidence
-- That a model response or tool result is equivalent to committed project state
-
----
-
-## Benchmark integrity
-
-On July 17, 2026, the project publicly recorded a benchmark correction. An audit found that byte-identical files in the auditable run history had been written by a fallback path that flushed import-seeded source content when generation produced no file. Those files were not model generations.
-
-The affected claims were retracted. Earlier runs without retained generation evidence were treated as unverifiable. The correction remains part of the project record:
-
-- [Benchmark correction](./archive/2026-07-17-benchmark-correction.md)
-- [Archived benchmark specification v1.1](./archive/BENCHMARK_SPEC-v1.1.md)
-
-The active protocol requires run provenance, explicit eligibility, source-leak auditing, generation evidence, and a declared integrity arm before a result can support a conclusion.
-
----
-
-## Documentation
-
-- [CURRENT_STATE.md](./CURRENT_STATE.md) — canonical public claim boundary
-- [docs/visual-runtime.md](./docs/visual-runtime.md) — shared runtime and host-independent UI
-- [docs/pipeline-overview.md](./docs/pipeline-overview.md) — candidate pipeline and authority boundaries
-- [docs/tool-runtime.md](./docs/tool-runtime.md) — capability planning, leases, and candidate tools
-- [docs/runtime-observability.md](./docs/runtime-observability.md) — streaming and bounded runtime events
-- [docs/evidence-reconciliation.md](./docs/evidence-reconciliation.md) — declared architecture and implementation evidence
-- [docs/progress-2026-09.md](./docs/progress-2026-09.md) — bounded evidence and limitations
-- [docs/tcc-primer.md](./docs/tcc-primer.md) — Topological Context Compilation primer
-- [TOPOLOGY_LAYOUT.md](./TOPOLOGY_LAYOUT.md) — deterministic visual placement
-- [BENCHMARK_SPEC.md](./BENCHMARK_SPEC.md) — active benchmark protocol
-- [RESEARCH_HYPOTHESES.md](./RESEARCH_HYPOTHESES.md) — hypotheses and falsifiers
-- [CITATION.cff](./CITATION.cff) — citation metadata
-
----
-
-## Scope of this repository
-
-The full development workspace remains private while the system is hardened. This public repository contains architecture documentation, research hypotheses, benchmark methodology, bounded public evidence summaries, historical corrections, and the current public claim boundary.
-
-It does not contain private source code, raw internal planning material, development logs, credentials, provider configuration, private benchmark outputs, or unpublished implementation artifacts.
-
----
-
-## Contact
-
-**Mateo Rendon Suarez**
-
-Bogotá, Colombia
-
-hello@graiph.dev
-
-[graiph.dev](https://graiph.dev)
-
----
-
-## License
+Mateo Rendon Suarez · Bogotá, Colombia · [hello@graiph.dev](mailto:hello@graiph.dev) · [graiph.dev](https://graiph.dev)
 
 Apache 2.0 — see [LICENSE](./LICENSE).
