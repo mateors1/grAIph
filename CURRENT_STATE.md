@@ -1,10 +1,12 @@
 # grAIph — Current State
 
-**Last reviewed:** 2026-11-16
+**Last reviewed:** 2026-11-21
 
 This document is the canonical public claim boundary for grAIph. It distinguishes implementation properties, bounded evidence, experimental mechanisms, current blockers, planned work, and claims the project explicitly does not make.
 
 When another public document is less precise, use this document as the more conservative description.
+
+The [v0.4.0 research preview](./docs/releases/2026-11-21.md) is a documentation-only release. It does not distribute or qualify the private engine. PR #4’s November update is already merged; the November 21 follow-up preserves that history.
 
 This review distinguishes the committed November 13 checkpoint from later verified but uncommitted source cuts, including November 15's uninterrupted regeneration and provenance follow-up. Retained macOS build, typecheck, root-suite, and recursive-package checks now pass with classified skips. Natural and controlled live compiler-repair cases add scoped observations; release and cross-platform qualification remain open. See the [evidence guide](./docs/evidence-guide.md) for interpretation and [November progress](./docs/progress-2026-11.md) for chronology. The [public preview guide](./docs/getting-started.md) explains availability.
 
@@ -236,6 +238,8 @@ In a later six-case Codex development comparison, direct repair, original guidan
 
 An earlier separate campaign produced 6/6 direct, 5/6 deterministic-guidance, and 3/6 scheduled reasoned-guidance passes. Unavailable diagnoses/repairs and all diagnosis costs remained in the denominator. Neither campaign supports default promotion. They are exposed development samples under different protocols, not pooled replications, a holdout study, or the relation-surface A/B.
 
+The diagnostic-guidance trials above are prompt/repair studies. When discussing full coding harnesses, retain them as historical code-only controls rather than a full-harness baseline.
+
 ### Installed settings and regression scope
 
 A November 1–2 isolated installed-extension check exercised save/cancel, native adaptive command gates, full host exit, and retained settings after cold reopen. It added no model calls. A separate retained regression summary reports 1,022 passing tests across 70 files, using the latest complete passing result for each file and preserving earlier failures. This was selected regression coverage, not a new full-suite or cross-platform release receipt.
@@ -263,6 +267,12 @@ The later V59 run completed 53/53 units **and 53/53 provenance admissions** in 5
 V59's retained controlled evaluation was 9.4865/10 (9.49 rounded), confidence B, with 288/309 normalized differential cases. This is a corrected-source/non-clean regeneration arm. Full completion and admission coverage are not complete behavioral parity, a clean new-product benchmark, or a model ranking. Native packaging and hardware behavior remain unmeasured; the reported development checkpoint still contained uncommitted changes.
 
 The separate graTeha/Gratia harness completed a first increment on November 15 with 58 passing tests: versioned graph import, contract inspection, evaluator controls, a shared frontend/MCP engine, and scripted approval-gated repair. Its TEM replay reused retained V59 evidence without new model calls. At that checkpoint, live generation/usage integration and Claude support were unqualified, native VS Code host execution was unsupported, and live repair required source-confinement qualification. A later November 15 increment reached 79 tests with project/suite/run dashboards, scoped token/time/quality charts, stage consoles, and a versioned report projection that separates measured results, executed findings, and unverified model notes. A bounded live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not execute the proposed application or qualify the live benchmark matrix. Claude interoperation, native host execution, and complete live generation/usage adapters remained unqualified.
+
+### November 21 receipt and comparison review
+
+The latest retained uninterrupted saved-graph receipt reviewed here remains November 15’s V59 result. This review rehashed 4,149 source-snapshot files, 368 extension files, and 53 output files, verified immutable inputs and receipt/log hashes, and independently matched graph intent, edges, and the dependency contract. The 166-pair logging summary records complete capture without mismatches or truncation; capture at transport admission is not serving-backend attestation. No new inference run or product tests were executed for the documentation release.
+
+A later coding-harness pilot used real Codex tools under a custom profile and real grAIph generation under externally fixed topology and dispatch. It measures those configurations, not an unconstrained full-harness comparison. Code-only/file-snapshot trials are historical controls. See [Harness comparison scope](./docs/harness-comparison-scope.md).
 
 See [November progress and limitations](./docs/progress-2026-11.md).
 
@@ -323,11 +333,11 @@ The retained September exact-build run establishes bounded convergence but not r
 - a long soak;
 - a current clean release receipt.
 
-### B3 — Committed release and native qualification
+### B3 — Product release and native qualification
 
 **Status: BLOCKED**
 
-Later macOS root and recursive checks passed, with skips classified, on an uncommitted source cut. The early failing checkpoint is historical; it is no longer the latest test status. A clean committed/release artifact, Windows-native qualification, native integration, and the broader visual/soak gates remain unestablished.
+Later macOS root and recursive checks passed, with skips classified, on an uncommitted source cut. The early failing checkpoint is historical; it is no longer the latest test status. A clean committed product/release artifact, Windows-native qualification, native integration, and the broader visual/soak gates remain unestablished. The documentation-only research preview does not close them.
 
 Natural and controlled live compiler-repair observations do not replace those release gates. The isolated installed-settings check has its own scope. Public registry availability, production operations, and broad external compatibility are not established by this repository.
 

@@ -1,6 +1,6 @@
 # November 2026 Progress and Limitations
 
-**Reviewed:** 2026-11-16
+**Reviewed:** 2026-11-21
 
 Since the September public preview, grAIph has added controlled adaptive execution, native project QA, grouped generation for cyclic dependencies, persistent settings, and richer project recreation. Deterministic stage sequencing remains the default; model output can still vary. The shared tool executor, candidate leases, capability expansion, and adaptive controller are implemented opt-ins that default off.
 
@@ -139,6 +139,14 @@ A bounded live Codex authoring trial produced a **12-step prompt-only software d
 The expanded MCP catalog was discovered through the native Codex client without inference turns. The TEM replay completed 17 substeps, reproducing **9.4865/10, confidence B**, without new model calls. Historical generation usage is counted once rather than duplicated for each replay observation; unavailable historical logs remain unavailable.
 
 Claude native interoperability was still untested, live generation/usage adapters remained incomplete, and native VS Code host execution remained unsupported. These reporting and authoring results do not remove the separate live-repair source-confinement gate or qualify all six live benchmark cells.
+
+## November 21: retained-evidence recheck and documentation release
+
+PR #4’s earlier November update is already merged. The v0.4.0 documentation-only preview preserves it and adds the current evidence review. The latest retained successful saved-graph batch remains November 15’s V59 result, not a new November 21 generation. The review rehashed source/extension/output inventories and immutable inputs and independently matched graph intent, edges, and dependency contracts. Its complete logging record still covers 166 input/response pairs.
+
+The later harness audit distinguishes real workspace/tool use from full-harness equivalence: direct Codex used an isolated custom permissions/tool profile; grAIph used externally supplied planning, topology, and dispatch. These constrained configurations do not establish a general harness ranking. Future comparisons must deliver the same prompts one at a time and let each full harness use its normal workspace editing, tools, and verification loop. Historical code-only controls remain outside that baseline.
+
+The public release is documentation, not private implementation or product qualification. No product tests or external model runs were started for this review. See [Harness comparison scope](./harness-comparison-scope.md) and [release notes](./releases/2026-11-21.md).
 
 ## Gates that remain open
 
