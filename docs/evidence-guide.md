@@ -1,6 +1,6 @@
 # Reading the Evidence
 
-**Reviewed:** 2026-11-16
+**Reviewed:** 2026-11-21
 
 grAIph has implemented mechanisms, passing checks under declared conditions, preliminary real-provider observations, and experiments that remain proposed. These support different conclusions. [Current state](../CURRENT_STATE.md) is the governing claim boundary; this guide explains how to read it.
 
@@ -56,11 +56,19 @@ These are **corrected-source/non-clean regeneration** observations. Full generat
 
 The separate graTeha harness's November 15 first increment passed 58 tests and replayed the retained TEM evaluation without new model calls. A later November 15 increment reached 79 tests, added dashboards and consoles, and separately exercised live prompt-only design/evaluator authoring. That trial generated no application implementation and left its evaluator draft unreviewed/uncalibrated. Scripted repair, live authoring, and tool discovery do not establish a qualified live comparison matrix or live repair. See the [dated progress record](./progress-2026-11.md) rather than treating a replay as a new generation.
 
+## November 21 re-review and release scope
+
+The retained V59 receipt is still dated November 15; this documentation review is not a new inference result. Rehashing matched the sealed source, extension, and output inventories and immutable inputs. Independent comparison also preserved saved graph intent, edges, and dependency contracts. The runtime graph itself legitimately advances during generation, so its live bytes are not treated as an immutable input.
+
+The public v0.4.0 release contains documentation only. It does not release or qualify the private engine, reset its uncommitted-state limits, or close native/production gates. See the [release notes](./releases/2026-11-21.md).
+
+The later graTeha pilot is also subject to a configuration audit: direct Codex had real workspace tools under a custom profile, while an external planner/driver constrained grAIph topology and dispatch. These are configuration measurements, not a matched unrestricted full-harness baseline. The [scope guide](./harness-comparison-scope.md) requires normal editing, tools, and verification with original prompts delivered one at a time. Code-only/file-snapshot trials remain historical controls.
+
 ## Other tracks keep their own limits
 
 The September visual run showed one mutation origin converging across three viewers. Its p95 receipt-to-layout values exceeded the 250 ms target. Later opt-in diagnostics do not replace the complete origin/viewer matrix or establish that target is met.
 
-Small diagnostic-guidance comparisons did not justify changing the default: the later six-case comparison passed all cases in every arm while clarified guidance used 2.099 times direct-repair tokens. Deterministic tool-surface results describe functional behavior, not measured provider-quality gains. See [November progress](./progress-2026-11.md) and the historical [September note](./progress-2026-09.md).
+Historical code-only diagnostic-guidance controls did not justify changing the default: the later six-case comparison passed all cases in every arm while clarified guidance used 2.099 times direct-repair tokens. Deterministic tool-surface results describe functional behavior, not measured provider-quality gains. See [November progress](./progress-2026-11.md) and the historical [September note](./progress-2026-09.md).
 
 The relation-surface A/B remains pending. It requires fresh graphs per arm, controlled provider/backend/settings, source-suppression and leak audits, complete receipts, and at least five repetitions per arm under the [benchmark specification](../BENCHMARK_SPEC.md).
 

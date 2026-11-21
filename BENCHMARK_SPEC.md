@@ -6,7 +6,7 @@
 
 **Current result status:** No current provider-backed release conclusion
 
-**Reviewed:** 2026-11-13
+**Reviewed:** 2026-11-21
 
 This specification defines how the current experimental generation mechanisms should be evaluated. It is a protocol, not a leaderboard and not a claim that any arm is better.
 
@@ -38,6 +38,10 @@ Other evidence programs—such as host-independent visual synchronization and ca
 An implementation or result in one track does not promote another. A public statement must identify its track, evidence type, and limitations. The diagnostic-repair campaigns summarized in [November progress](./docs/progress-2026-11.md) are separate protocols, not executions of this relation-surface specification. This review does not rewrite their frozen rules or results.
 
 ---
+
+## Separate rule for full coding-harness comparisons
+
+A full coding-harness comparison exercises each harness’s normal workspace editing, tool use, and verification loop. Deliver identical benchmark prompts one at a time. Code-only prompts or file-snapshot responses are historical controls and do not belong in the full-harness baseline. Declare custom permissions/tool profiles and externally supplied graph planning or dispatch as constrained arms. See [Harness comparison scope](./docs/harness-comparison-scope.md). This rule does not retroactively promote earlier repair trials or satisfy the separate relation-surface experiment.
 
 ## 3. Non-negotiable controls
 

@@ -6,7 +6,7 @@ grAIph represents software architecture as shared graph state: generation units,
 
 Its central systems question is: **what becomes easier to control and measure when architecture is explicit, rather than reconstructed independently by each model, tool, and interface?**
 
-**Research preview · documentation reviewed November 16, 2026.** The grAIph implementation remains private; this repository contains documentation, evidence summaries, hypotheses, and protocols. November 15 added uninterrupted 53-unit host runs, a later run with 53/53 provenance admissions, scoped source-exposure defenses, and graTeha testing-harness increments. These are bounded development results, not production, cross-platform, or clean new-product benchmark qualification.
+**Research preview · reviewed November 21, 2026.** This v0.4.0 snapshot releases the public documentation only; the engine remains private. The newest retained saved-graph run reviewed here is November 15’s uninterrupted 53/53 generation with 53/53 provenance admissions. Its sealed artifacts were rechecked for this review; no new inference run is claimed. Native product, cross-platform, and clean benchmark qualification remain open. See the [release notes](./docs/releases/2026-11-21.md).
 
 ## Start here
 
@@ -73,7 +73,7 @@ The [evidence guide](./docs/evidence-guide.md) explains these limits and the ski
 
 graTeha (also called Gratia) is a separate semiautomatic testing project. Its November 15 first increment added versioned tests and graph import, a shared browser/MCP experiment engine, readable contract inspection with field-linked issues, evaluator controls, and a scripted approval-gated repair lifecycle. That first increment passed 58 tests. A later November 15 increment reached 79 tests and added project/suite/run dashboards, token/time/quality charts, stage consoles, and versioned reporting that separates measurements, executed findings, and model notes. A live authoring trial produced 12 prompt-only steps and a draft evaluator; it did not generate or repair the proposed application. A retained TEM replay reproduced 9.4865/10, confidence B, without new model calls.
 
-These are dated harness results, not a claim that the complete live six-cell benchmark matrix is qualified. Replay is not new inference; scripted repair is not live repair. See [November progress](./docs/progress-2026-11.md) for the run history, source-exposure qualifications, and harness limitations.
+These are dated harness results. A later pilot/audit found real workspace tools and generation, but also a custom direct Codex profile and externally fixed grAIph topology/dispatch. Those measurements do not qualify an unrestricted full-harness comparison or a speed/cost ranking. A new baseline must exercise each normal editing, tool, and verification loop with the same prompts delivered one at a time; code-only/file-snapshot trials remain historical controls. See [Harness comparison scope](./docs/harness-comparison-scope.md) and [November progress](./docs/progress-2026-11.md).
 
 ## Research questions
 
@@ -96,6 +96,7 @@ Further architecture references:
 - [Evidence reconciliation](./docs/evidence-reconciliation.md)
 - [Topology-derived layout](./TOPOLOGY_LAYOUT.md)
 - [November progress](./docs/progress-2026-11.md) and historical [September evidence](./docs/progress-2026-09.md)
+- [Harness comparison scope](./docs/harness-comparison-scope.md) and [release notes](./docs/releases/2026-11-21.md)
 - [Contributing](./.github/CONTRIBUTING.md) and [citation metadata](./CITATION.cff)
 
 ## Contact and license

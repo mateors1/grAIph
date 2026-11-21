@@ -1,8 +1,8 @@
 # Getting Started with the Public Preview
 
-**Reviewed:** 2026-11-15
+**Reviewed:** 2026-11-21
 
-This repository is a documentation and research preview. It contains architecture explanations, evidence summaries, hypotheses, and experiment protocols. The engine source and development extension remain private. This repository does not provide a verified public installation path, a runnable sample, or a hosted editor.
+This repository is a documentation and research preview. The v0.4.0 public release contains these documents and their repository source archive, not an engine binary or installable extension. It includes architecture explanations, evidence summaries, hypotheses, and experiment protocols. The engine source and development extension remain private. This repository does not provide a verified public product installation path, a runnable sample, or a hosted editor. See the [release scope](./releases/2026-11-21.md).
 
 ## If you are evaluating the design
 
